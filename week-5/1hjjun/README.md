@@ -1,7 +1,5 @@
 # 5주차 과제: RAG 평가 — Golden Dataset, LLM-as-a-Judge, Ragas
 
-> **이 README는 피드백을 반영한 v2 재작업본입니다.** 1차 결과(26청크, LLM 메트릭만)와 2차 결과(76청크, LLM+NonLLM)를 함께 비교 기록합니다.
-
 ---
 
 ## 📌 이 과제를 한 마디로
@@ -402,30 +400,6 @@ LLM에게 루브릭과 판정 기준을 프롬프트로 제공 → LLM이 점수
 | 가장 크게 벌어질 메트릭                                    | Context Recall (메타필터·Hybrid 효과) | **NonLLM Context Recall이 +0.20으로 최대 Δ** — 예측 적중 (단 LLM Recall은 +0.067로 작은 편)                                                                  |
 | 년도 혼동이 반영될 메트릭                                  | Faithfulness 또는 AnsCorr             | **부분 적중**. cross-year에서 NonLLM Recall이 0.5로 낮은 단서. 순수 "연도만 틀린" 케이스는 여전히 기본 메트릭으로 직접 포착 안 됨 → 심화 A YearAccuracy 필요 |
 | Advanced에서 Faithfulness가 오히려 낮아질 시나리오         | Re-ranker가 무관 청크 상위            | **소수 관찰**. q10/q14/q19에서 Advanced Faithfulness가 Basic보다 미세하게 낮음. 평균은 +0.049로 Advanced 우위                                                |
-
----
-
-## 재현 방법
-
-```bash
-# 1. .env 설정 (GEMINI_API_KEY, UPSTAGE_API_KEY, COHERE_API_KEY, OPENAI_API_KEY 필수)
-cd week-5/1hjjun
-
-# 2. 인덱싱 (RecursiveCharacterTextSplitter, 76청크 생성)
-python3 indexing.py
-
-# 3. Basic RAG 실행
-python3 week3/RAGevaluating.py
-
-# 4. Advanced RAG 실행 (Hybrid + Cohere Rerank + 메타데이터 필터)
-python3 week4/AdvancedRAG.py
-
-# 5. Golden Dataset v2 생성
-python3 build_dataset_v2.py
-
-# 6. Ragas 평가 (LLM 5 + NonLLM 2 + Faithfulness 진단)
-python3 week5/ragas_evaluate.py
-```
 
 ---
 
