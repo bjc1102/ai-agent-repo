@@ -793,6 +793,65 @@ Agent: "3주 전에 이 트렌드로 생성한 컨셉이 있습니다.
 
 ---
 
+### 출력 확장 후보 (Nice-to-have 이후 단계)
+
+현재 설계의 최종 출력은 "아이디어 브리핑 카드" 하나다.
+아래를 출력에 추가하면 브리핑에서 그치지 않고
+사용자가 즉시 바이브코딩을 시작할 수 있는 구조가 된다.
+
+**바이브코딩 킥오프 플랜 자동 생성 (`PLAN.md`)**
+
+아이디어 확정 후 Agent가 아래 내용을 담은 PLAN.md를 자동 생성한다.
+
+```markdown
+# MCPurr — 바이브코딩 킥오프 플랜
+
+## 목표
+연결된 MCP 서버를 고양이 표정으로 시각화하는 macOS 메뉴바 앱
+
+## 구현 순서
+1. MenuBarExtra로 기본 메뉴바 아이콘 표시
+2. MCP 서버 연결 상태 polling 로직 구현
+3. 상태별 고양이 이모지 매핑 (연결 😺 / 오류 🙀 / 대기 😿)
+4. 클릭 시 서버 목록 드롭다운 표시
+
+## 추천 파일 구조
+MCPurr/
+├── App.swift
+├── MenuBarController.swift
+├── MCPStatusChecker.swift
+└── Assets.xcassets/
+
+## 핵심 코드 스니펫 (Swift)
+// MenuBarExtra 진입점
+@main
+struct MCPurrApp: App {
+  var body: some Scene {
+    MenuBarExtra("MCPurr", systemImage: "cat") {
+      ContentView()
+    }
+  }
+}
+```
+
+---
+
+### 수평 확장 후보 (동일 엔진, 다른 목적지)
+
+현재 에이전트의 핵심 엔진인 "밈 × IT 트렌드 교차 분석"은
+출력 목적지를 교체하는 것만으로 다른 도메인으로 확장 가능하다.
+trend_scanner·app_existence_checker는 그대로 유지하되,
+concept_generator의 출력 타입만 바꾸면 된다.
+각 확장 도메인에서도 Tool 조합이 요청마다 달라지므로 Agent 가치는 유지된다.
+
+| 확장 도메인 | concept_generator 출력 | 추가 필요 Tool |
+|---|---|---|
+| 숏폼 콘텐츠 기획 | YouTube Shorts·릴스 주제 + 후킹 문구 | YouTube Search (유사 영상 존재 확인) |
+| 밈 굿즈 아이디어 | 스티커·티셔츠 디자인 컨셉 | 커머스 API (유사 상품 존재 확인) |
+| 사이드 비즈니스 | 트렌드 기반 1인 비즈니스 컨셉 | 시장 규모 조회 Tool |
+
+---
+
 ### 구현 프레임워크 후보
 
 현재 설계는 프레임워크 독립적으로 작성되었다.
@@ -804,5 +863,13 @@ Agent: "3주 전에 이 트렌드로 생성한 컨셉이 있습니다.
   LangGraph와 병행 사용 가능
 - **MCP**: Tool 수가 늘어날 경우 표준 인터페이스로 전환.
   trend_scanner 소스 추가 시 코어 로직 수정 없이 확장 가능
+
+---
+
+### 개인용 확장 메모
+
+trend_scanner Tool만 분리해서 매일 아침 IT 트렌드를
+텔레그램 봇으로 자동 수신하는 경량 Workflow로 확장 가능.
+Agent 불필요 — cron + trend_scanner + 텔레그램 API 조합으로 구현.
 
 ---
