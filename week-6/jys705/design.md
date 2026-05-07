@@ -847,7 +847,6 @@ concept_generator의 출력 타입만 바꾸면 된다.
 | 확장 도메인 | concept_generator 출력 | 추가 필요 Tool |
 |---|---|---|
 | 숏폼 콘텐츠 기획 | YouTube Shorts·릴스 주제 + 후킹 문구 | YouTube Search (유사 영상 존재 확인) |
-| 밈 굿즈 아이디어 | 스티커·티셔츠 디자인 컨셉 | 커머스 API (유사 상품 존재 확인) |
 | 사이드 비즈니스 | 트렌드 기반 1인 비즈니스 컨셉 | 시장 규모 조회 Tool |
 
 ---
