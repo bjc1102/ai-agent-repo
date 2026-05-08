@@ -1,96 +1,283 @@
-# AI ETF 리밸런싱 코치 & 매매 일지 Agent
+# 7주차 AI Agent 구현 프로젝트
 
-## 1. 개요·목적
+## 프로젝트 링크
 
-- **해결하려는 문제**: 투자자가 보유한 ETF(예: QQQ)와 개별주(예: NVDA) 간의 '실질 종목 노출도(True Exposure)'를 정확히 파악하고, 거시 경제 지표 및 유튜브 투심을 종합해 리밸런싱 결정을 내리며 이를 매매 일지에 자동 기록한다.
-- **타깃 사용자**: 기술주 ETF와 개별주 혼합 포트폴리오를 운영하며, 데이터 기반의 체계적인 매매 일지 관리를 원하는 개인 투자자.
-- **왜 Agent여야 하는가**: 사용자의 요청이 "종목 비중만 계산해 줘"일 수도 있고, "시장 상황 보고 리밸런싱 제안 후 일지에 저장해 줘", 혹은 "과거 매매 기록 찾아줘"일 수도 있습니다. 요청의 의도에 따라 이미지 인식(Vision), ETF API 연동, 유튜브 검색, 복잡한 수치 연산, DB 읽기/쓰기 등 Tool 호출 순서와 조합이 매번 달라집니다. 고정된 순서로 실행되는 Workflow나 단순한 단일 LLM 호출로는 이 동적인 경로 분기를 처리할 수 없습니다.
+- Repository: https://github.com/1hjjun/AIagentService
+- 구현 위치: `week-7/1hjjun/`
+- 6주차 설계서: [`design.md`](../design.md)
+- 아키텍처 문서: [`architecture.md`](../architecture.md)
 
-## 2. 사용자 시나리오
+## 구현한 Agent
 
-- **Persona**: 이수익 (30대 직장인, 기술주/반도체 중심 투자, 리스크 관리에 관심 많음)
-- **대표 요청**:
-  1.  _(앱 화면 이미지 첨부)_ "내 자산 중에 엔비디아의 실질 비중이 총 몇 %인지 계산하고 웹에서 볼 수 있게 차트 데이터로 줘."
-  2.  "요즘 나스닥 불안한데 주요 유튜브 경제 채널 요약해서 참고하고, 내 QLD 비중을 어떻게 줄일지 제안한 다음 오늘 매매 일지에 저장해 줘."
-  3.  "지난달 FOMC 때 내가 왜 QQQ를 팔았었는지 일지 검색해 보고, 지금 주가랑 비교해서 복기해 줘."
-- **각 요청이 단일 Tool 한 번으로 끝나지 않는 이유**:
-  - 요청 1: Vision(자산 추출) → ETF 분석(편입비 조회) → 수치 연산 Tool이 순차적으로 필요함.
-  - 요청 2: 유튜브 검색(투심 분석) → 시장 지표(VIX 조회) → DB 쓰기(일지 저장) 등 판단과 액션이 복합적으로 얽혀 있음.
-  - 요청 3: DB 읽기(과거 기록) → 시장 지표(현재가 조회) Tool을 조합해 비교 분석해야 함.
+- Agent 이름: AI ETF 리밸런싱 코치
+- 해결하려는 문제: 포트폴리오 이미지, ETF 구성 종목, 유튜브 영상 자막, 거시경제 지표, 매매 일지를 함께 사용해 현재 자산 비중과 섹터 쏠림을 분석하고 리밸런싱 의견을 저장한다.
+- 타깃 사용자: 미국 주식과 ETF를 함께 보유하고, 매매 판단을 데이터와 일지로 관리하고 싶은 개인 투자자.
 
-## 3. 기능 요구사항
+## 6주차 설계와의 연결
 
-- **Must-have**:
-  - 사용자의 포트폴리오 이미지를 입력받아 종목(Ticker), 수량, 평가액을 JSON 형태로 추출한다.
-  - 특정 ETF의 내부 편입 비율을 조회하여 개별주와의 합산 '실질 노출 비중(True Exposure)'을 계산하고 시각화용 데이터를 출력한다.
-  - 거시 경제 지표와 투심 데이터를 입력받아 리밸런싱 권고안을 자연어로 출력하고, 이 논리를 DB(매매 일지)에 기록한다.
-- **Nice-to-have**:
-  - 유튜브 키워드 검색을 통해 최신 영상 대본을 요약하여 투심(Bull/Bear) 지표를 도출한다.
-  - 과거 특정 기간의 매매 일지를 조회하여 현재 내리는 결정과의 일관성을 점검한다.
+- 유지한 설계:
+  - ReAct 패턴: `decide -> tool call -> observe -> decide -> final`
+  - 입력 스키마: `{ "image_url"?: string, "user_query": string }`
+  - 출력 스키마: `{ "answer_text": string, "chart_data"?: json, "is_saved": boolean }`
+  - 이미지 분석, ETF 구성 조회, 시장 지표 분석, 유튜브 분석, 일지 저장 Tool 구조
+  - 종료 조건: 최대 Tool 호출 수, 반복 호출 감지, 연속 실패 제한
 
-## 4. Agent 패턴 선택과 근거
+- 변경한 설계:
+  - FMP API 대신 `yfinance`로 ETF 구성 종목을 조회한다.
+  - YouTube Data API 키 대신 `youtube-transcript-api`로 영상 자막을 직접 가져온다.
+  - `market_macro`를 단일 VIX 조회에서 글로벌 매크로 분석 Tool로 확장했다.
+  - `true_exposure_calculator`, `portfolio_allocation_calculator`를 추가해 LLM이 비중을 직접 계산하지 않도록 했다.
+  - DynamoDB 대신 로컬 JSON 파일(`data/journal.json`)에 매매 일지를 저장한다.
+  - 반복 실행 비용을 줄이기 위해 이미지 분석과 유튜브 요약은 cache를 사용한다. ETF와 매크로 지표는 최신성이 중요해 캐시하지 않는다.
 
-- **선택한 패턴**: ReAct (Reasoning + Acting)
-- **선택 근거**: 사용자의 요청 범위가 매우 넓습니다. Agent가 관찰(Observation)된 중간 결과물(예: 'Vision으로 추출한 QQQ 보유량', '현재 VIX 지수')을 바탕으로 다음 행동(ETF 분석을 할지, DB 저장을 할지)을 스스로 추론하고 결정해야 하므로 ReAct 패턴이 가장 적합합니다.
-- **루프 구조도**:
-  1. 사용자 입력 분석 (Thought)
-  2. 자산 파악 필요 시 Vision Tool 호출 (Action → Observation)
-  3. 세부 비중 파악 필요 시 ETF Tool 호출 (Action → Observation)
-  4. 시장 분석 필요 시 Macro Tool 또는 YouTube Tool 호출 (Action → Observation)
-  5. 모든 데이터 수집 후 실질 비중 및 리밸런싱 계산 (Thought)
-  6. 기록 필요 시 DB 쓰기 Tool 호출 (Action → Observation)
-  7. 최종 응답 및 웹 UI 렌더링용 JSON 반환 (Final Answer)
+- 변경 이유:
+  - 별도 유료 API 키 없이 실행 가능하게 만들기 위해 FMP/Youtube API 의존성을 제거했다.
+  - 투자 비중 계산은 LLM이 아니라 deterministic Tool이 담당해야 수치 환각을 줄일 수 있다.
+  - 과제 환경에서 실제 동작과 검증을 쉽게 확인하도록 로컬 JSON 일지와 `result/` 스냅샷을 사용했다.
 
-## 5. 동작 명세
+## 사용한 Tool
 
-- **입력 스키마**: `{"image_url": "string (optional)", "user_query": "string"}`
-- **출력 스키마**: `{"answer_text": "string", "chart_data": "json (optional)", "is_saved": "boolean"}`
-- **정상 흐름 (요청 2 기준)**:
-  - Thought: 사용자가 QLD 리밸런싱과 일지 저장을 요청했다. 유튜브 투심과 거시 시장 지표를 확인하자.
-  - Action: `YouTube_Sentiment(query="나스닥 전망")`
-  - Observation: `{"sentiment": "Bearish", "summary": "단기 조정 우려 심화"}`
-  - Action: `Market_Macro(ticker="^VIX")`
-  - Observation: `{"current": 25.4}`
-  - Thought: VIX가 25 이상으로 높고 유튜브 투심이 부정적이므로 레버리지 비중 축소를 제안하고 이를 일지에 저장해야겠다.
-  - Action: `Journal_DB(mode="write", content="VIX 25.4, 투심 Bearish. QLD 비중 15% 축소 제안")`
-  - Observation: `{"status": "success"}`
-  - Final Answer: "현재 변동성 증가와 하락 투심을 고려해 QLD 15% 축소를 제안하며, 이 내용을 매매 일지에 기록했습니다."
-- **예외 흐름**: Vision 도구가 이미지를 인식하지 못하거나 화질이 낮을 경우 `{"error": "VISION_FAIL"}` 반환. Agent는 임의로 비중을 지어내지 않고 사용자에게 "이미지 화질이 낮아 종목 인식이 어렵습니다. 텍스트로 보유 종목을 입력해 주세요."라고 재요청.
-- **종료 조건**: 최대 스텝 수(max steps = 7) 도달 시, 또는 사용자의 모든 요청(계산 및 저장 등)을 완료하고 최종 응답(Final Answer)을 생성했을 때 종료.
+| Tool 이름 | 실제/API/mock | 역할 |
+|---|---|---|
+| `vision_extractor` | OpenAI GPT-4o Vision + cache + optional mock fallback | 포트폴리오 이미지에서 ticker, 수량, 현재가, 평가액 추출 |
+| `youtube_sentiment` | `youtube-transcript-api` + OpenAI LLM + cache + optional mock fallback | 영상 전체 자막을 10줄 요약하고 5줄 투자 판단 생성 |
+| `market_macro` | `yfinance` + `fear-greed` + OpenAI LLM + heuristic fallback | DXY, 원/달러, 미국채 10Y/2Y, 원자재, VIX, Fear & Greed 기반 ETF 영향 분석 |
+| `etf_constituent` | `yfinance` + optional mock fallback | ETF 구성 종목과 편입 비중 조회 |
+| `portfolio_allocation_calculator` | local deterministic | 자산별 비중과 S&P500 GICS 기준 섹터별 비중 계산 |
+| `true_exposure_calculator` | local deterministic | 직접 보유분과 ETF 간접 보유분을 합산해 특정 종목 실질 노출도 계산 |
+| `journal_db` | local JSON | 매매 일지 읽기/쓰기 |
 
-## 6. Tool 명세
+모든 Tool은 공통적으로 아래 형태의 구조화된 결과를 반환한다.
 
-| Tool 이름           | 목적(1줄)                       | 입력 스키마                                           | 출력 스키마                                        | 실패 시 반환                    | 사용 조건                                                                                |
-| :------------------ | :------------------------------ | :---------------------------------------------------- | :------------------------------------------------- | :------------------------------ | :--------------------------------------------------------------------------------------- |
-| `Vision_Extractor`  | 잔고 이미지에서 자산 추출       | `{"image_url": str}`                                  | `{"assets": [{"ticker": str, "amount": float}]}`   | `{"error": "UNREADABLE_IMAGE"}` | 이미지가 입력되었을 때                                                                   |
-| `ETF_Constituent`   | ETF 내 개별 주식 편입 비중 조회 | `{"etf_ticker": str}`                                 | `{"holdings": [{"ticker": str, "weight": float}]}` | `{"error": "ETF_NOT_FOUND"}`    | 포트폴리오에 ETF가 포함되어 있을 때                                                      |
-| `Market_Macro`      | 주가, VIX 등 시장 지표 조회     | `{"ticker": str}`                                     | `{"current_price": float, "trend": str}`           | `{"error": "API_TIMEOUT"}`      | 시장 상황 판단이 필요할 때                                                               |
-| `YouTube_Sentiment` | 영상 대본 요약 기반 투심 분석   | `{"keyword": str}`                                    | `{"sentiment": str, "summary": str}`               | `{"error": "NO_VIDEOS"}`        | 전문가 의견 등 정성적 평가 요구 시                                                       |
-| `Journal_DB`        | 매매 일지 DB 기록 및 과거 조회  | `{"mode": "read"\|"write", "date": str, "text": str}` | `{"status": "ok", "data": str}`                    | `{"error": "DB_ERROR"}`         | 기록을 저장하거나 복기해야 할 때 (파괴적 동작 방지 위해 write 시 confirm=True 내부 처리) |
+```json
+{
+  "ok": true,
+  "data": {},
+  "error": null,
+  "source": "api | cache | mock | local",
+  "fallback_used": false,
+  "fallback_reason": null,
+  "original_error": null
+}
+```
 
-## 7. 데이터셋
+## 실행 패턴
 
-- **ETF_Constituent**: FMP (Financial Modeling Prep) API의 ETF Holdings 엔드포인트 활용.
-  - _응답 샘플_: `[{"symbol": "NVDA", "weightPercentage": 8.54}, {"symbol": "AAPL", "weightPercentage": 8.01}]`
-- **Market_Macro**: Yahoo Finance API (RapidAPI 경유). 실시간 지수 제공, 인증 필요(API Key).
-  - _응답 샘플_: `{"symbol": "^VIX", "regularMarketPrice": 25.4}`
-- **Journal_DB**: AWS DynamoDB 연동 (설계/평가 시에는 JSON 파일로 Mocking).
-  - _Mock 읽기 응답 샘플_: `{"date": "2025-08-15", "decision": "QQQ 10% 매도", "reason": "잭슨홀 미팅 매파적 발언 동조"}`
-- **YouTube_Sentiment**: YouTube Data API v3로 영상 ID 획득 후 `youtube-transcript-api`로 자막 추출. (실시간 변환 대신 LLM 프롬프팅으로 Mock 처리 가능)
+- 선택한 패턴: ReAct
+- 이유: 사용자의 요청에 따라 필요한 Tool 조합이 달라진다. 예를 들어 이미지가 있으면 먼저 자산을 추출해야 하고, ETF가 있으면 구성 종목을 확인해야 하며, 리밸런싱과 저장 요청이 있으면 유튜브/매크로 분석 후 일지를 써야 한다.
+- 간단한 흐름:
 
-## 8. 성공 판정 기준
+```text
+사용자 입력
+-> LLM이 필요한 정보 판단
+-> Tool 하나 호출
+-> Tool 결과 Observation 확인
+-> 다음 Tool 또는 최종 답변 판단
+-> 필요 시 journal_db(write)
+-> 최종 답변
+```
 
-1.  "이미지 + 실질 비중 계산" 복합 요청에 대해 `Vision_Extractor` → `ETF_Constituent` 순서로 Tool을 호출하는가. (예/아니오)
-2.  개별주(NVDA)와 ETF(QQQ) 동시 보유 시, 두 데이터를 더하여 '실질 비중'을 수학적으로 정확히 연산해내는가. (예/아니오)
-3.  최종 응답(출력 스키마)에 웹 UI 렌더링을 위한 `chart_data` JSON이 누락 없이 포함되어 있는가. (예/아니오)
-4.  "저장해 줘"라는 요청이 있을 때 반드시 `Journal_DB` Tool을 'write' 모드로 호출한 뒤 종료하는가. (예/아니오)
-5.  7 step 이내에 무한 루프에 빠지지 않고 정상적으로 종료하는가. (예/아니오)
+현재 통합 예시의 실제 흐름은 다음과 같다.
 
-## 9. 제약·확장
+```text
+vision_extractor
+-> youtube_sentiment
+-> etf_constituent
+-> portfolio_allocation_calculator
+-> journal_db
+```
 
-- **현재 설계의 한계**: 단일 Agent가 Vision 처리(멀티모달), 유튜브 긴 대본 요약(긴 컨텍스트), 복잡한 수치 계산, DB 연동을 모두 수행하므로 프롬프트가 매우 무거워지고 실행 속도(Latency)가 지연될 수 있습니다.
-- **Multi Agent로 확장 시 역할 분리 지점**:
-  - `Orchestrator Agent`: 사용자의 입력을 받아 목표를 분배하고 최종 웹 UI용 응답(JSON)을 조립.
-  - `Data & Math Worker`: Vision 추출 결과물과 ETF API를 조합해 실질 비중을 산출하는 정량 계산 전담.
-  - `Research Worker`: 유튜브 대본 추출 및 거시 지표를 분석하여 투심(Bull/Bear)을 판별하는 정성 분석 전담.
-- **장기 상태 메모리 (7주차 심화 연결)**: 현재는 사용자가 명시적으로 "저장해 줘" 할 때만 DB를 쓰지만, 향후에는 Agent 스스로 사용자의 과거 '투자 성향(예: 손실 회피 성향 강함)'이나 '반복적인 매매 실수'를 프로파일링하여 메모리에 담아두고 선제적으로 조언하는 구조로 확장할 수 있습니다.
+거시경제 분석 요청이 포함되면 다음 Tool이 추가된다.
+
+```text
+market_macro("GLOBAL_MACRO")
+```
+
+## 실행 방법
+
+```bash
+# 설치
+cd week-7/1hjjun
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# 환경 변수
+cp .env.example .env
+# .env 안에 OPENAI_API_KEY=<your_key> 입력
+# 선택: ALLOW_MOCK_FALLBACK=true
+
+# 예시 실행
+python -m src.main --example 1
+python -m src.main --example 2
+python -m src.main --example 3
+
+# 커스텀 입력
+python -m src.main --input examples/input_1.json
+
+# 반복 호출 종료 조건 확인
+python -m src.main --example 1 --force-loop
+
+# 테스트
+python -m pytest tests -q
+```
+
+필요한 환경 변수:
+
+| 이름 | 필수 여부 | 설명 |
+|---|---|---|
+| `OPENAI_API_KEY` | 필수 | Vision 분석, 유튜브 자막 요약, 매크로 LLM 판단에 사용 |
+| `ALLOW_MOCK_FALLBACK` | 선택 | `true`일 때 일부 외부 API 실패를 mock 데이터로 대체 |
+| `YOUTUBE_SUMMARY_MODEL` | 선택 | 유튜브 요약 모델 override, 기본값 `gpt-4o-mini` |
+| `MARKET_MACRO_MODEL` | 선택 | 매크로 분석 모델 override, 기본값 `gpt-4o-mini` |
+
+별도 API 키가 필요 없는 데이터 소스:
+
+- ETF/가격/거시 지표: `yfinance`
+- YouTube 자막: `youtube-transcript-api`
+- Fear & Greed: `fear-greed`
+
+## 예시 실행
+
+### 예시 1: 포트폴리오 이미지 + 유튜브 영상 + 섹터 쏠림 분석 + 일지 저장
+
+입력 (`examples/input_1.json`):
+
+```json
+{
+  "image_url": "examples/real_portfolio_kakaotalk.png",
+  "user_query": "이 포트폴리오 사진에서 현재 투자자산과 자산별 비중을 정리해 줘. 그리고 이 유튜브 영상(https://www.youtube.com/watch?v=webDqOfjx8E)의 전체 자막을 요약한 뒤, S&P500 GICS 섹터 기준으로 내 포트폴리오가 어느 섹터에 너무 몰려 있는지 판단하고 리밸런싱 의견을 줘. 투자 섹터 분류는 네가 종목과 ETF 구성을 보고 판단해 줘. 마지막에 오늘 매매 일지에 현재 자산 비중, 유튜브 요약, 섹터 쏠림 판단, 리밸런싱 의견을 저장해 줘."
+}
+```
+
+실행 결과 파일:
+
+```text
+result/20260508T051053Z/001_vision_extractor.json
+result/20260508T051053Z/002_youtube_sentiment.json
+result/20260508T051053Z/003_etf_constituent.json
+result/20260508T051053Z/004_portfolio_allocation_calculator.json
+result/20260508T051053Z/005_journal_db.json
+```
+
+출력 요약:
+
+```text
+- 이미지에서 QQQM, GOOGL, 6965, GEV, RKLB, TSLA, ETN, HOOD 등 보유 자산을 추출했다.
+- 유튜브 영상 전체 자막을 10줄로 요약하고, 투자자가 참고할 판단을 5줄로 생성했다.
+- ETF(QQQM)는 yfinance로 구성 종목을 조회했다.
+- LLM이 종목별 섹터를 분류하고 portfolio_allocation_calculator가 자산별/섹터별 비중을 계산했다.
+- 분석 결과와 리밸런싱 의견을 journal_db로 저장했다.
+```
+
+### 예시 2: 글로벌 매크로 분석
+
+입력 개념:
+
+```text
+현재 글로벌 매크로 상황을 보고 SPY, QQQ, XLK, XLE, XLF, GLD, TLT에 어떤 영향이 있는지 분석해 줘.
+```
+
+실행 결과 파일:
+
+```text
+result/manual_market_macro_final_check/001_market_macro.json
+```
+
+출력 요약:
+
+```text
+- source: api+fear_greed+llm
+- fallback_used: false
+- 미국채 10Y: 4.392
+- 미국채 2Y: 3.8
+- 10Y-2Y 금리차: 0.592
+- Fear & Greed: 67.6 / greed
+- Fear & Greed 세부 지표: market_momentum_sp500, stock_price_strength, stock_price_breadth,
+  put_call_options, market_volatility_vix, safe_haven_demand, junk_bond_demand
+- LLM이 금리, 달러, 원자재, 심리 지표의 상관관계와 ETF별 영향을 판단했다.
+```
+
+### 예시 3: 과거 매매 일지 복기
+
+입력 (`examples/input_3.json`):
+
+```json
+{
+  "user_query": "지난달 FOMC 때 내가 왜 QQQ를 팔았었는지 일지 검색해 보고 지금 주가랑 비교해 줘"
+}
+```
+
+출력 요약:
+
+```text
+- journal_db(read)로 FOMC 관련 과거 매매 기록을 검색한다.
+- market_macro("QQQ")로 현재 QQQ 가격과 추세를 확인한다.
+- 과거 판단 이유와 현재 시장 상황을 비교해 복기 답변을 생성한다.
+```
+
+## 실행 로그 분석
+
+`result/` 폴더에는 각 Tool 호출마다 입력과 결과가 JSON으로 저장된다.
+
+예시 1의 예상 흐름:
+
+```text
+vision_extractor -> youtube_sentiment -> etf_constituent -> portfolio_allocation_calculator -> journal_db(write)
+```
+
+예시 1의 실제 저장 결과:
+
+```text
+001_vision_extractor.json
+002_youtube_sentiment.json
+003_etf_constituent.json
+004_portfolio_allocation_calculator.json
+005_journal_db.json
+```
+
+분석:
+
+- 설계에서 예상한 것처럼 이미지 분석 결과를 Observation으로 받은 뒤 ETF 구성과 섹터 비중 계산이 이어졌다.
+- 같은 이미지/영상 재실행 시 `vision_extractor`, `youtube_sentiment`는 cache source를 사용해 불필요한 API 호출을 줄인다.
+- ETF 구성 종목과 매크로 지표는 최신성이 중요해 캐시하지 않는다.
+- `market_macro`는 `fear-greed` 라이브러리와 OpenAI LLM까지 실제 호출했으며, mock 없이 `fallback_used=false`로 성공했다.
+- Tool 결과는 `ok`, `source`, `fallback_used`, `original_error`를 포함해 실패/대체 여부를 눈으로 확인할 수 있다.
+
+## 성공 판정 기준 확인
+
+6주차 성공 판정 기준 5개와 추가 검증 2개를 테스트와 실제 실행 결과로 확인했다.
+
+| 기준 | 결과 | 근거 |
+|---|---|---|
+| 이미지 입력 후 자산 추출 Tool을 먼저 호출하는가 | 통과 | `vision_extractor` 결과가 `result/.../001_vision_extractor.json`으로 저장됨 |
+| ETF 구성 정보를 사용해 개별 종목/ETF 노출을 계산하는가 | 통과 | `etf_constituent`, `true_exposure_calculator` 테스트 통과 |
+| 최종 응답에 차트/비중 데이터가 포함되는가 | 통과 | `portfolio_allocation_calculator`가 `chart_data`와 allocation 결과 생성 |
+| "저장해 줘" 요청 시 일지 write가 호출되는가 | 통과 | `result/20260508T051053Z/005_journal_db.json` |
+| 7회 이내 종료 조건과 반복 호출 방지가 있는가 | 통과 | `GuardrailState.MAX_TOOL_CALLS=7`, repeated tool call 테스트 통과 |
+| Tool 실패 처리가 구조화되어 있는가 | 통과 | `ok=false`, `fallback_used`, `original_error` 단위 테스트 통과 |
+| mock이 아닌 실제 API 실행이 가능한가 | 통과 | `market_macro` 실제 실행 결과 `source=api+fear_greed+llm`, `fallback_used=false` |
+
+테스트 결과:
+
+```text
+88 passed in 0.75s
+```
+
+## 구현하며 배운 점
+
+- 프롬프트가 너무 친절하면 LLM이 실제 데이터를 보지 않고 맞춘 척할 수 있다. 그래서 각 Tool의 input/output을 `result/`에 저장해 실제로 무엇을 봤는지 확인하게 만들었다.
+- 이미지 분석과 유튜브 요약은 비용이 커서 cache가 유용했다. 반면 ETF 구성과 매크로 지표는 최신성이 중요해 cache 대상에서 제외했다.
+- LLM은 비중 계산을 자주 틀릴 수 있으므로 `true_exposure_calculator`, `portfolio_allocation_calculator`처럼 계산 전용 Tool을 분리하는 편이 안전했다.
+- 거시경제 분석은 숫자 나열만으로는 부족했다. `market_macro("GLOBAL_MACRO")`가 지표 수집 후 LLM 판단을 만들도록 확장하니 리밸런싱 의견의 근거가 더 분명해졌다.
+
+## 자가 점검 체크리스트
+
+1. [x] 개인 repository 링크가 있는가
+2. [x] 6주차 설계 `design.md` 링크가 있는가
+3. [x] Tool 2개 이상이 구현됐는가
+4. [x] Tool 실패 처리가 있는가
+5. [x] 종료 조건이 있는가
+6. [x] 예시 입력 2개 이상이 있는가
+7. [x] 성공 판정 기준 3개 이상을 확인했는가
+8. [x] API key나 `.env`가 commit되지 않았는가
