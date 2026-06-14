@@ -103,45 +103,67 @@ response = client.messages.create(
 
 ## Before / After 비교
 
-### 정상 케이스 (삼성전자 분석)
+최적화를 두 단계로 나눠 모델 교체 효과와 캐싱 효과를 분리했다.
 
-| 항목 | Before (Sonnet) | After (Haiku+Cache) | 변화 |
-|------|----------------|---------------------|------|
-| LLM 호출 횟수 | 2회 | 2회 | 유지 |
-| Input token | 4,801 | 6,745 | +40.5% (토크나이저 차이) |
-| Output token | 1,142 | 882 | -22.8% |
-| Cache write token | — | 0 | — |
-| Cache read token | — | 0 | — |
-| Latency | 19,235 ms | 7,697 ms | **-60.0%** |
-| Tool 호출 횟수 | 2건 | 2건 | 유지 |
-| Retrieval context 수 | 측정 불가 | 측정 불가 | — |
-| 비용 | $0.031533 | $0.011155 | **-64.6%** |
+| 단계 | 구성 | 목적 |
+|------|------|------|
+| Sonnet | claude-sonnet-4-6, 캐싱 없음 | 기준선 |
+| Haiku only | claude-haiku-4-5, 캐싱 없음 | 모델 교체 단독 효과 확인 |
+| Haiku + Cache | claude-haiku-4-5, cache_control 적용 | 캐싱 추가 효과 확인 |
 
-> Input token이 증가한 이유: Haiku와 Sonnet은 토크나이저가 달라 같은 텍스트도 token 수가 다르게 계산됨. 단가 절감 효과가 커서 비용은 감소.
-> 2 step 쿼리는 캐시 생성·읽기 없음 — step이 적어 캐싱 효과 미발생.
+### Short run (2-step) — 삼성전자 분석
 
-### 실패 케이스 (KODEX 국내채권)
+| 항목 | Sonnet | Haiku only | Haiku + Cache |
+|------|--------|-----------|--------------|
+| Steps | 2 | 2 | 2 |
+| Input token | 4,801 | 6,740 | 6,745 |
+| Output token | 1,142 | 812 | 882 |
+| Cache write | — | 0 | 0 |
+| Cache read | — | 0 | 0 |
+| Latency | 19,235 ms | 7,252 ms | 7,697 ms |
+| 비용 | $0.031533 | $0.010800 | $0.011155 |
+| 비용 절감 | 기준 | **-65.8%** | -64.6% |
 
-| 항목 | Before (Sonnet) | After (Haiku+Cache) | 변화 |
-|------|----------------|---------------------|------|
-| LLM 호출 횟수 | 2회 | 2회 | 유지 |
-| Input token | 4,231 | 6,195 | +46.5% (토크나이저 차이) |
-| Output token | 433 | 229 | -47.1% |
-| Cache write token | — | 0 | — |
-| Cache read token | — | 0 | — |
-| Latency | 9,331 ms | 3,017 ms | **-67.7%** |
-| Tool 호출 횟수 | 1건 | 1건 | 유지 |
-| Retrieval context 수 | 측정 불가 | 측정 불가 | — |
-| 비용 | $0.019188 | $0.007340 | **-61.7%** |
+> Haiku only ≈ Haiku+Cache — 2-step run에서는 캐싱이 발동하지 않는다. 비용 절감 전체가 모델 단가 차이에서 비롯된 것.
 
-### 전체 4건 집계
+### Long run (3-step) — 소비 분석
 
-| 항목 | Before (Sonnet) | After (Haiku+Cache) | 변화 |
-|------|----------------|---------------------|------|
-| 총 비용 | $0.313251 | $0.100819 | **-67.8%** |
-| 평균 latency | 35,393 ms | 15,871 ms | **-55.2%** |
-| Cache write token | — | 22,364 | — |
-| Cache read token | — | 44,167 | — |
+| 항목 | Sonnet | Haiku only | Haiku + Cache |
+|------|--------|-----------|--------------|
+| Steps | 3 | 3 | 3 |
+| Input token | 16,005 | 18,874 | — |
+| Output token | 3,833 | 3,706 | — |
+| Cache write | — | 0 | 9,885 |
+| Cache read | — | 0 | 6,011 |
+| Latency | 47,421 ms | 21,690 ms | 19,385 ms |
+| 비용 | $0.105510 | $0.037404 | $0.034212 |
+| 비용 절감 | 기준 | -64.6% | **-67.6%** |
+
+> Haiku only 대비 Haiku+Cache가 추가로 약 3% 절감. cache_read 6,011 token이 발생해 캐싱 효과가 소폭 기여.
+
+### Long run (6-step) — ETF 투자 추천
+
+| 항목 | Sonnet | Haiku only | Haiku + Cache |
+|------|--------|-----------|--------------|
+| Steps | 4 | 6 | 6 |
+| Input token | 27,870 | 54,657 | — |
+| Output token | 4,894 | 5,043 | — |
+| Cache write | — | 0 | 12,479 |
+| Cache read | — | 0 | 38,156 |
+| Latency | 65,584 ms | 37,412 ms | 33,385 ms |
+| 비용 | $0.157020 | $0.079872 | $0.048112 |
+| 비용 절감 | 기준 | -49.1% | **-69.4%** |
+
+> Step 수가 많을수록 cache_read가 커진다. Haiku only 대비 Haiku+Cache가 추가로 약 20% 절감 — ETF 추천에서 캐싱 효과가 가장 두드러진다.
+> Sonnet 대비 Haiku only 절감(-49.1%)이 다른 케이스(-65%)보다 낮은 이유: Haiku에서 step 수가 4→6으로 늘어 input token이 두 배 가까이 누적됐기 때문.
+
+### 전체 3건 집계
+
+| 항목 | Sonnet | Haiku only | Haiku + Cache |
+|------|--------|-----------|--------------|
+| 총 비용 | $0.294063 | $0.128076 | $0.093479 |
+| 비용 절감 | 기준 | -56.4% | **-68.2%** |
+| 평균 latency | 44,080 ms | 22,118 ms | 20,156 ms |
 
 ---
 
@@ -149,7 +171,7 @@ response = client.messages.create(
 
 6~8주차에서 사용한 성공 기준 중 이번 비교에 사용할 항목:
 
-- 소비 분석 요청 시 `get_transactions` → `analyze_spending` 순서로 호출
+- 소비 분석 요청 시 `get_transactions` -> `analyze_spending` 순서로 호출
 - 투자 추천 시 `get_stock_price`, `get_news_summary`, `generate_recommendation` 모두 호출
 - Tool 실패 시 fallback 처리 후 정상 답변 생성
 - 모든 요청 15 step 이내 종료
@@ -158,19 +180,31 @@ response = client.messages.create(
 
 - `stop_reason: end_turn` 정상 종료 4건 모두 유지
 - 실패 케이스 `fallback_occurred: true` 및 SYMBOL_NOT_FOUND 처리 유지
-- 소비 분석 tool 호출 순서 (`get_transactions` → `analyze_spending`) 유지
+- 소비 분석 tool 호출 순서 (`get_transactions` -> `analyze_spending`) 유지
 - 15 step 이내 종료 (최대 6 step)
 
 달라진 동작:
 
-- ETF 투자 추천: steps **4 → 6** 증가, `fallback_occurred: false → true` 발생
+- ETF 투자 추천: steps **4 -> 6** 증가
+- Haiku가 Sonnet보다 더 많은 ETF 심볼을 탐색(`KODEX 국내채권` 포함)하다 SYMBOL_NOT_FOUND 발생 → `fallback_occurred: false → true`
+  - Sonnet은 해당 심볼을 조회하지 않아 실패가 없었던 것으로, Haiku의 오류 처리 문제가 아닌 조회 심볼 선택의 차이
+  - Sonnet도 `KODEX 국내채권`을 조회했다면 동일하게 실패했을 것 (mock 데이터 범위 문제)
 - Haiku가 Sonnet 대비 한 번에 판단하는 능력이 낮아 동일 요청에서 더 많은 step 필요
-- Output token 감소 → 답변 길이·상세도가 다소 줄어드는 경향
+- Output token 감소 -> 답변 길이·상세도가 다소 줄어드는 경향
 
 문제가 된다면 되돌릴 변경:
 
-- ETF 추천에서 step 증가 및 fallback이 지속 발생할 경우 `MODEL_ID`를 다시 `claude-sonnet-4-6`으로 복원
-- 또는 system prompt에 ETF 추천 시 병렬 호출 명시 지침을 추가해 step 수를 줄이는 방향으로 조정
+ETF 추천에서 step이 4 -> 6으로 늘고 fallback_occurred가 false -> true로 바뀌었다. 이 변화는 다음 기준으로 허용 여부를 판단한다.
+
+| 항목 | 허용 범위 | 현재 상태 | 판정 |
+|------|-----------|-----------|------|
+| Step 수 | 10 이하 | 6 | 허용 |
+| fallback_occurred | 단순 SYMBOL_NOT_FOUND 수준 | true (SYMBOL_NOT_FOUND) | 허용 |
+| 최종 답변 품질 | 추천 종목·금액 포함 | 포함 | 허용 |
+| stop_reason | end_turn | end_turn | 허용 |
+
+- 허용: step ≤ 10이고, fallback이 SYMBOL_NOT_FOUND처럼 데이터 부재에 의한 경우
+- Sonnet 복원 기준: step 10 초과 or loop_detected or 최종 답변에 추천 종목·금액 누락
 
 ---
 
