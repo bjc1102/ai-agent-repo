@@ -1,0 +1,458 @@
+{
+  "ok": true,
+  "input": "data\\decoded\\06_sample_zeroaccess_decoded.json",
+  "decision": "ai_review_required",
+  "needs_llm_review": true,
+  "completion_status": "url_encoded_candidate_detected",
+  "reason": "URL/percent-encoded payload candidates were detected and should be reviewed with url_decode_tool.",
+  "required_next_action": "review_url_encoded_candidates",
+  "decoded_status": "decode_success_with_residue",
+  "counts": {
+    "decoded_candidates": 161,
+    "failed_candidates": 0,
+    "residue_candidates": 157,
+    "url_encoded_candidates": 11,
+    "excluded_streams": 2,
+    "tls_streams": 2,
+    "tls_segments": 31,
+    "non_tls_streams": 98,
+    "non_tls_segments": 3798,
+    "checked_streams": 100,
+    "checked_segments": 3829
+  },
+  "tls_summary": {
+    "stream_count": 2,
+    "segment_count": 31,
+    "excluded_streams": [
+      {
+        "stream_key": "192.168.106.131:1215-74.125.228.101:443-tcp",
+        "protocol": "TLS",
+        "reason": "encrypted_stream_excluded",
+        "segment_count": 3
+      },
+      {
+        "stream_key": "74.125.228.101:443-192.168.106.131:1215-tcp",
+        "protocol": "TLS",
+        "reason": "encrypted_stream_excluded",
+        "segment_count": 28
+      }
+    ]
+  },
+  "non_tls_artifact_summary": {
+    "stream_count": 98,
+    "segment_count": 3798,
+    "protocol_counts": {
+      "DNS": 10,
+      "HTTP": 53,
+      "TCP": 35
+    },
+    "dns_names_count": 50,
+    "http_hosts_count": 26,
+    "http_uris_count": 50,
+    "http_cookies_count": 19,
+    "binary_like_streams_count": 25,
+    "binary_like_segments_count": 0,
+    "dns_names_preview": [
+      "promos.fling.com",
+      "fling.com",
+      "www.google.com",
+      "google.com",
+      "ns1.google.com",
+      "j.maxmind.com",
+      "maxmind.com",
+      "wpad.localdomain",
+      "5565.mnstr3.com",
+      "redirect.ad-feeds.com"
+    ],
+    "http_hosts_preview": [
+      "promos.fling.com",
+      "j.maxmind.com",
+      "izhsuqbtcsx.cm",
+      "95.211.193.31",
+      "5565.mnstr3.com",
+      "redirect.ad-feeds.com",
+      "redirect.xmladfeed.com",
+      "thor.dailyrx.com",
+      "www.dailyrx.com",
+      "cdn2.dailyrx.com"
+    ],
+    "http_uris_preview": [
+      "/geo/txt/city.php",
+      "http://promos.fling.com/geo/txt/city.php",
+      "/app/geoip.js",
+      "http://j.maxmind.com/app/geoip.js",
+      "/UFxHW1hYR1hQWkdaWEZWCgUADVRYUANdWBkPGRpQABNZ",
+      "http://izhsuqbtcsx.cm/UFxHW1hYR1hQWkdaWEZWCgUADVRYUANdWBkPGRpQABNZ",
+      "/?clid=19j41pfps9iz0",
+      "http://95.211.193.31/?clid=19j41pfps9iz0",
+      "/",
+      "clid=19j41pfps9iz0"
+    ],
+    "binary_like_streams_preview": [
+      {
+        "stream_key": "82.15.9.23:16464-192.168.106.131:1189-tcp",
+        "protocol": "TCP",
+        "first_segment_no": 71,
+        "position": "tcp_payload.text",
+        "sample_preview": "I��\"�w��Y$�WƏ�6���\u0012\u001f�,������\u000eg�Vk�p�~q�=��\u00068�-L�aA\u001c�\u0005\u001a�� Xa2�JJ�y\u001b\u0005\t��m�A��'\u001d��6\u001c�]�r_I/k���\u0015'�G�\u0014\"Ar�\u000f\\�$;�.\u0004߫�\u001cLL��\u0012�P",
+        "printable_ratio": 0.8641,
+        "replacement_ratio": 0.4362,
+        "peer": {
+          "src": "82.15.9.23:16464",
+          "dst": "192.168.106.131:1189-tcp"
+        },
+        "reason": "non_printable_or_binary_like_payload"
+      },
+      {
+        "stream_key": "82.15.9.23:16464-192.168.106.131:1190-tcp",
+        "protocol": "TCP",
+        "first_segment_no": 74,
+        "position": "tcp_payload.text",
+        "sample_preview": "�\u0017��#ܬX��\bܳ_~\u0014dK��h��H�p�#\u0015󖵝�WgR��>r�'g9B)���G��x\u001b�\u0012{�vgj\u0015��\u0016����\u0000\fp\u0012\u001bEs�7NT��%R\u000ev�J'�^D\u0006+h�����N\u0016\u001b<���|\u0016\u00060\u0015�\u0016�����z!�^",
+        "printable_ratio": 0.8746,
+        "replacement_ratio": 0.4331,
+        "peer": {
+          "src": "82.15.9.23:16464",
+          "dst": "192.168.106.131:1190-tcp"
+        },
+        "reason": "non_printable_or_binary_like_payload"
+      },
+      {
+        "stream_key": "82.15.9.23:16464-192.168.106.131:1188-tcp",
+        "protocol": "TCP",
+        "first_segment_no": 77,
+        "position": "tcp_payload.text",
+        "sample_preview": "�(r�\u0015Y�\u000e�.�\u0002m\"*�υ����\r\\S�蜯x��<I\n\u0003\u001bߡ*�b�F�MV�b i\u0015\\��BY\u0000�-����)v�v\nPduW\u001e�q�\\@�9���\u00112���x%\\Z���H}݃��`cw~J���M�y\\\u001d�'b\b<�ņI\u001c�",
+        "printable_ratio": 0.8754,
+        "replacement_ratio": 0.4221,
+        "peer": {
+          "src": "82.15.9.23:16464",
+          "dst": "192.168.106.131:1188-tcp"
+        },
+        "reason": "non_printable_or_binary_like_payload"
+      },
+      {
+        "stream_key": "192.168.106.131:1195-81.17.18.18:12757-tcp",
+        "protocol": "TCP",
+        "first_segment_no": 495,
+        "position": "tcp_payload.text",
+        "sample_preview": "�rws`prr'!�p�q?\u001d\b\u001b\u001e\u001e\u0013W@4F\\BYZ\u0011\u001d\u001f\u0002\u0013\u0006\u001b\u0010\u001e\u0017WA0Y?!;7YJ\\BWA0Y%\u001b\u001c\u0016\u001d\u0005\u0001Y<&YG\\CWA0Y&\u0000\u001b\u0016\u0017\u001c\u0006W@4F\\BWA0Y\\<7&F\\B1WA0Y\\<7&F\\B7WA0Y\\<7&Y1",
+        "printable_ratio": 0.8462,
+        "replacement_ratio": 0.0165,
+        "peer": {
+          "src": "192.168.106.131:1195",
+          "dst": "81.17.18.18:12757-tcp"
+        },
+        "reason": "non_printable_or_binary_like_payload"
+      },
+      {
+        "stream_key": "66.45.56.124:80-192.168.106.131:1201-tcp",
+        "protocol": "TCP",
+        "first_segment_no": 612,
+        "position": "tcp_payload.text",
+        "sample_preview": "HTTP/1.1 200 OK\r\nDate: Thu, 04 Oct 2012 11:35:05 GMT\r\nServer: Apache/2.2.14 (Ubuntu)\r\nSet-Cookie: JSESSIONID=0C69653505B",
+        "printable_ratio": 0.9158,
+        "replacement_ratio": 0.3392,
+        "peer": {
+          "src": "66.45.56.124:80",
+          "dst": "192.168.106.131:1201-tcp"
+        },
+        "reason": "non_printable_or_binary_like_payload"
+      }
+    ]
+  },
+  "decoded_candidates_preview": [
+    {
+      "segment_no": 544,
+      "stream_key": "192.168.106.131:1197-31.184.244.180:80-tcp",
+      "protocol": "HTTP",
+      "position": "http_request.uri",
+      "source": "http_request.uri.path_segment",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "UFxHW1hYR1hQWkdaWEZWCgUADVRYUANdWBkPGRpQABNZ",
+      "decoded_preview": "P\\G[XXGXPZGZXFV\n\u0005\u0000\rTXP\u0003]X\u0019\u000f\u0019\u001aP\u0000\u0013Y",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": []
+    },
+    {
+      "segment_no": 546,
+      "stream_key": "31.184.244.180:80-192.168.106.131:1197-tcp",
+      "protocol": "HTTP",
+      "position": "http_request.uri",
+      "source": "http_request.uri.path_segment",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "UFxHW1hYR1hQWkdaWEZWCgUADVRYUANdWBkPGRpQABNZ",
+      "decoded_preview": "P\\G[XXGXPZGZXFV\n\u0005\u0000\rTXP\u0003]X\u0019\u000f\u0019\u001aP\u0000\u0013Y",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": []
+    },
+    {
+      "segment_no": 570,
+      "stream_key": "192.168.106.131:1199-95.211.193.31:80-tcp",
+      "protocol": "HTTP",
+      "position": "http_header.request_line",
+      "source": "http_header.request_line.embedded_url[0].query_param.afdt",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "aqt0w9f0w7u05m6xx18jwx9u2k03p1bidjzoquuc4le4",
+      "decoded_preview": "j�t���û��n��_#�\u001fn�M7�V�v<���W�",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": []
+    },
+    {
+      "segment_no": 575,
+      "stream_key": "95.211.193.31:80-192.168.106.131:1199-tcp",
+      "protocol": "TCP",
+      "position": "http_header.response_line",
+      "source": "http_header.response_line.embedded_url[0].query_param.p",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "lk806QwfNfVdqAZnc+YIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy+vMTNIDs1NffyJaeL/ppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q/0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i+QOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC+tTi5xliFOfbyHqJWbzO4FM/+VVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj+CpxUSb3uXCq47E/CefRYsWo9tSYr9ZX/9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG+qtjSuYzhFh86uy/+FzfPeLkN7fdkzinUhx1RvrO4bMKJsoc+aSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru+A9Fj0aPv9mTMR4S5/fd8ixZ9crRbJ9IbN3GWCB1+b/32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU+7MFqnYqe4QSL3QBb/pUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q/Yk+7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa+vjdFAYCnesXV32nJYgpOk/z0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj/vOsqaPnnvWq+/uFB9x9EtYvlbzFg79pwA/mCH/drtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte/KO1vJ8zZ/rAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt+LUP+T0yVwDDsDJoyXfv7dk7Wk9K41/CvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H+4HviSvg+F9vBrgr1k9mSwGzibWHcb5/rFOD0a86z2h/6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo/fR7+xTIEIHTSRPB6X1e6NTO/AXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck/NI94uPKQmyfzWSDUMIW/h+xFmZOoen3UZddZP+PV//IiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct/IIwk",
+      "decoded_preview": "�O4�\f\u001f5�]�\u0006gs�\bh\u0012�U���0ѧ\u001c3\r��\f�|PHU����L\u0014b���\u00134�����Ȗ�/�i�kf[/\u0004��(mxtb%^.�*���>�\u0015Q�H\u0010�r�E�zE!���Z\u000ejV΢iPA�g�\u0004)���I7.V�\u001a�k�\u001cN\u001eP�E�ƌǂ\u0002�Y8\u00030�Y�&n%�/�9\u001c�4����tW�<6\u001e��Ж&n%�/�9�&n%�/�9�.���'\u001a�Q�y'\u0012��}��A'��\u0016(L\u001c��HS�t\u0014\u0011e���ؑ \n�)���w2�Ǡ���\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\u0012:�զ�|���\u0001��e\u0006?��\u0015\u0012o{�\n�;\u0013�}\u0016,Z�mI��e���sJ\u00168���*1i�At�a�\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\u001b0�l�ϚIBn�;�\u0014�1Y�փ\u0016�5*p��\u0013�P�8��\u000b\u0003\u0000j��\u000fE�F��ٓ1\u001e\u0012����,Y���l�Hl��X u���٦\u0019�5[�b%^.�*��kK��AxR�T��\u0005�v*{�\u0012/t\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\u001c�9�*\u0012��I)V��{6dژf\u0005���\\���Xf�z�bO��\"ȢQ�C�T��16� \u001a�A���p+��,�-J�,�@\u0005!\u0005\u000f�F,��ޘUoj��\u0016T\u0013-(�M�ꉡ.\u001e��V����t�\u0001�-B=\u001b)V�æ�)5����@`)ޱuw�rX����=\u0014!d�5�*��N\u0017(Z\u0018��f�v����AYv�\u001a�\f��\u001ba������\"��דe\u001d�\t^�\b˳#�󬩣������\u0007�}\u0012�/��Ń�i�\u000f�\bݮ��.\u0018�;VW��\u000b˟\u001em�L=�d�^�3�vf�m\u000f�\\�M�$�\u0003X&�!�����;�{���|͟�\u0000�d��B����Xf��k�7\u0002Q=Z�\u0006;�5���-��\u000f�=2W\u0000ð2h�w���;ZOJ�_¼\u0004tX���Ӌ������s#\t\u0006��?Yk�Ak\u0006\u0004q�&�����\u001e���\u000f���k��d�d�\u001b8�Xw\u001b���8=\u001a�����<�R\n��\n�\u0005�*W��Urwdב\ti\u0014\"��G��L�\b\u001d4�<\u001e���L��]hu��\u0014�\u0012��R�Z�\r8�k�Oj�d7\u0017#&�QK\u0002�\u0005ֆ�ٯ|�D\u001c��H���)\t�5�\rC\b[�~�Y�:���F]u��=_�\"$K��%��<��v�",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": []
+    },
+    {
+      "segment_no": 575,
+      "stream_key": "95.211.193.31:80-192.168.106.131:1199-tcp",
+      "protocol": "TCP",
+      "position": "http_header.response_line",
+      "source": "http_header.response_line.kv_token.p",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "lk806QwfNfVdqAZnc%2BYIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy%2BvMTNIDs1NffyJaeL%2FppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q%2F0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i%2BQOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC%2BtTi5xliFOfbyHqJWbzO4FM%2F%2BVVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj%2BCpxUSb3uXCq47E%2FCefRYsWo9tSYr9ZX%2F9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG%2BqtjSuYzhFh86uy%2F%2BFzfPeLkN7fdkzinUhx1RvrO4bMKJsoc%2BaSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru%2BA9Fj0aPv9mTMR4S5%2Ffd8ixZ9crRbJ9IbN3GWCB1%2Bb%2F32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU%2B7MFqnYqe4QSL3QBb%2FpUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q%2FYk%2B7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa%2BvjdFAYCnesXV32nJYgpOk%2Fz0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj%2FvOsqaPnnvWq%2B%2FuFB9x9EtYvlbzFg79pwA%2FmCH%2Fdrtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte%2FKO1vJ8zZ%2FrAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt%2BLUP%2BT0yVwDDsDJoyXfv7dk7Wk9K41%2FCvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H%2B4HviSvg%2BF9vBrgr1k9mSwGzibWHcb5%2FrFOD0a86z2h%2F6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo%2FfR7%2BxTIEIHTSRPB6X1e6NTO%2FAXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck%2FNI94uPKQmyfzWSDUMIW%2Fh%2BxFmZOoen3UZddZP%2BPV%2F%2FIiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct%2FIIwk",
+      "decoded_preview": "�O4�\f\u001f5�]�\u0006gs�\bh\u0012�U���0ѧ\u001c3\r��\f�|PHU����L\u0014b���\u00134�����Ȗ�/�i�kf[/\u0004��(mxtb%^.�*���>�\u0015Q�H\u0010�r�E�zE!���Z\u000ejV΢iPA�g�\u0004)���I7.V�\u001a�k�\u001cN\u001eP�E�ƌǂ\u0002�Y8\u00030�Y�&n%�/�9\u001c�4����tW�<6\u001e��Ж&n%�/�9�&n%�/�9�.���'\u001a�Q�y'\u0012��}��A'��\u0016(L\u001c��HS�t\u0014\u0011e���ؑ \n�)���w2�Ǡ���\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\u0012:�զ�|���\u0001��e\u0006?��\u0015\u0012o{�\n�;\u0013�}\u0016,Z�mI��e���sJ\u00168���*1i�At�a�\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\u001b0�l�ϚIBn�;�\u0014�1Y�փ\u0016�5*p��\u0013�P�8��\u000b\u0003\u0000j��\u000fE�F��ٓ1\u001e\u0012����,Y���l�Hl��X u���٦\u0019�5[�b%^.�*��kK��AxR�T��\u0005�v*{�\u0012/t\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\u001c�9�*\u0012��I)V��{6dژf\u0005���\\���Xf�z�bO��\"ȢQ�C�T��16� \u001a�A���p+��,�-J�,�@\u0005!\u0005\u000f�F,��ޘUoj��\u0016T\u0013-(�M�ꉡ.\u001e��V����t�\u0001�-B=\u001b)V�æ�)5����@`)ޱuw�rX����=\u0014!d�5�*��N\u0017(Z\u0018��f�v����AYv�\u001a�\f��\u001ba������\"��דe\u001d�\t^�\b˳#�󬩣������\u0007�}\u0012�/��Ń�i�\u000f�\bݮ��.\u0018�;VW��\u000b˟\u001em�L=�d�^�3�vf�m\u000f�\\�M�$�\u0003X&�!�����;�{���|͟�\u0000�d��B����Xf��k�7\u0002Q=Z�\u0006;�5���-��\u000f�=2W\u0000ð2h�w���;ZOJ�_¼\u0004tX���Ӌ������s#\t\u0006��?Yk�Ak\u0006\u0004q�&�����\u001e���\u000f���k��d�d�\u001b8�Xw\u001b���8=\u001a�����<�R\n��\n�\u0005�*W��Urwdב\ti\u0014\"��G��L�\b\u001d4�<\u001e���L��]hu��\u0014�\u0012��R�Z�\r8�k�Oj�d7\u0017#&�QK\u0002�\u0005ֆ�ٯ|�D\u001c��H���)\t�5�\rC\b[�~�Y�:���F]u��=_�\"$K��%��<��v�",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": []
+    }
+  ],
+  "failed_candidates_preview": [],
+  "residue_candidates_preview": [
+    {
+      "segment_no": 544,
+      "stream_key": "192.168.106.131:1197-31.184.244.180:80-tcp",
+      "protocol": "HTTP",
+      "position": "http_request.uri",
+      "source": "http_request.uri.path_segment",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "UFxHW1hYR1hQWkdaWEZWCgUADVRYUANdWBkPGRpQABNZ",
+      "decoded_preview": "P\\G[XXGXPZGZXFV\n\u0005\u0000\rTXP\u0003]X\u0019\u000f\u0019\u001aP\u0000\u0013Y",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": []
+    },
+    {
+      "segment_no": 546,
+      "stream_key": "31.184.244.180:80-192.168.106.131:1197-tcp",
+      "protocol": "HTTP",
+      "position": "http_request.uri",
+      "source": "http_request.uri.path_segment",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "UFxHW1hYR1hQWkdaWEZWCgUADVRYUANdWBkPGRpQABNZ",
+      "decoded_preview": "P\\G[XXGXPZGZXFV\n\u0005\u0000\rTXP\u0003]X\u0019\u000f\u0019\u001aP\u0000\u0013Y",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": []
+    },
+    {
+      "segment_no": 570,
+      "stream_key": "192.168.106.131:1199-95.211.193.31:80-tcp",
+      "protocol": "HTTP",
+      "position": "http_header.request_line",
+      "source": "http_header.request_line.embedded_url[0].query_param.afdt",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "aqt0w9f0w7u05m6xx18jwx9u2k03p1bidjzoquuc4le4",
+      "decoded_preview": "j�t���û��n��_#�\u001fn�M7�V�v<���W�",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": []
+    },
+    {
+      "segment_no": 575,
+      "stream_key": "95.211.193.31:80-192.168.106.131:1199-tcp",
+      "protocol": "TCP",
+      "position": "http_header.response_line",
+      "source": "http_header.response_line.embedded_url[0].query_param.p",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "lk806QwfNfVdqAZnc+YIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy+vMTNIDs1NffyJaeL/ppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q/0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i+QOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC+tTi5xliFOfbyHqJWbzO4FM/+VVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj+CpxUSb3uXCq47E/CefRYsWo9tSYr9ZX/9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG+qtjSuYzhFh86uy/+FzfPeLkN7fdkzinUhx1RvrO4bMKJsoc+aSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru+A9Fj0aPv9mTMR4S5/fd8ixZ9crRbJ9IbN3GWCB1+b/32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU+7MFqnYqe4QSL3QBb/pUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q/Yk+7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa+vjdFAYCnesXV32nJYgpOk/z0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj/vOsqaPnnvWq+/uFB9x9EtYvlbzFg79pwA/mCH/drtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte/KO1vJ8zZ/rAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt+LUP+T0yVwDDsDJoyXfv7dk7Wk9K41/CvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H+4HviSvg+F9vBrgr1k9mSwGzibWHcb5/rFOD0a86z2h/6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo/fR7+xTIEIHTSRPB6X1e6NTO/AXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck/NI94uPKQmyfzWSDUMIW/h+xFmZOoen3UZddZP+PV//IiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct/IIwk",
+      "decoded_preview": "�O4�\f\u001f5�]�\u0006gs�\bh\u0012�U���0ѧ\u001c3\r��\f�|PHU����L\u0014b���\u00134�����Ȗ�/�i�kf[/\u0004��(mxtb%^.�*���>�\u0015Q�H\u0010�r�E�zE!���Z\u000ejV΢iPA�g�\u0004)���I7.V�\u001a�k�\u001cN\u001eP�E�ƌǂ\u0002�Y8\u00030�Y�&n%�/�9\u001c�4����tW�<6\u001e��Ж&n%�/�9�&n%�/�9�.���'\u001a�Q�y'\u0012��}��A'��\u0016(L\u001c��HS�t\u0014\u0011e���ؑ \n�)���w2�Ǡ���\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\u0012:�զ�|���\u0001��e\u0006?��\u0015\u0012o{�\n�;\u0013�}\u0016,Z�mI��e���sJ\u00168���*1i�At�a�\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\u001b0�l�ϚIBn�;�\u0014�1Y�փ\u0016�5*p��\u0013�P�8��\u000b\u0003\u0000j��\u000fE�F��ٓ1\u001e\u0012����,Y���l�Hl��X u���٦\u0019�5[�b%^.�*��kK��AxR�T��\u0005�v*{�\u0012/t\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\u001c�9�*\u0012��I)V��{6dژf\u0005���\\���Xf�z�bO��\"ȢQ�C�T��16� \u001a�A���p+��,�-J�,�@\u0005!\u0005\u000f�F,��ޘUoj��\u0016T\u0013-(�M�ꉡ.\u001e��V����t�\u0001�-B=\u001b)V�æ�)5����@`)ޱuw�rX����=\u0014!d�5�*��N\u0017(Z\u0018��f�v����AYv�\u001a�\f��\u001ba������\"��דe\u001d�\t^�\b˳#�󬩣������\u0007�}\u0012�/��Ń�i�\u000f�\bݮ��.\u0018�;VW��\u000b˟\u001em�L=�d�^�3�vf�m\u000f�\\�M�$�\u0003X&�!�����;�{���|͟�\u0000�d��B����Xf��k�7\u0002Q=Z�\u0006;�5���-��\u000f�=2W\u0000ð2h�w���;ZOJ�_¼\u0004tX���Ӌ������s#\t\u0006��?Yk�Ak\u0006\u0004q�&�����\u001e���\u000f���k��d�d�\u001b8�Xw\u001b���8=\u001a�����<�R\n��\n�\u0005�*W��Urwdב\ti\u0014\"��G��L�\b\u001d4�<\u001e���L��]hu��\u0014�\u0012��R�Z�\r8�k�Oj�d7\u0017#&�QK\u0002�\u0005ֆ�ٯ|�D\u001c��H���)\t�5�\rC\b[�~�Y�:���F]u��=_�\"$K��%��<��v�",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": []
+    },
+    {
+      "segment_no": 575,
+      "stream_key": "95.211.193.31:80-192.168.106.131:1199-tcp",
+      "protocol": "TCP",
+      "position": "http_header.response_line",
+      "source": "http_header.response_line.kv_token.p",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "lk806QwfNfVdqAZnc%2BYIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy%2BvMTNIDs1NffyJaeL%2FppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q%2F0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i%2BQOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC%2BtTi5xliFOfbyHqJWbzO4FM%2F%2BVVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj%2BCpxUSb3uXCq47E%2FCefRYsWo9tSYr9ZX%2F9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG%2BqtjSuYzhFh86uy%2F%2BFzfPeLkN7fdkzinUhx1RvrO4bMKJsoc%2BaSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru%2BA9Fj0aPv9mTMR4S5%2Ffd8ixZ9crRbJ9IbN3GWCB1%2Bb%2F32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU%2B7MFqnYqe4QSL3QBb%2FpUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q%2FYk%2B7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa%2BvjdFAYCnesXV32nJYgpOk%2Fz0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj%2FvOsqaPnnvWq%2B%2FuFB9x9EtYvlbzFg79pwA%2FmCH%2Fdrtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte%2FKO1vJ8zZ%2FrAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt%2BLUP%2BT0yVwDDsDJoyXfv7dk7Wk9K41%2FCvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H%2B4HviSvg%2BF9vBrgr1k9mSwGzibWHcb5%2FrFOD0a86z2h%2F6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo%2FfR7%2BxTIEIHTSRPB6X1e6NTO%2FAXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck%2FNI94uPKQmyfzWSDUMIW%2Fh%2BxFmZOoen3UZddZP%2BPV%2F%2FIiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct%2FIIwk",
+      "decoded_preview": "�O4�\f\u001f5�]�\u0006gs�\bh\u0012�U���0ѧ\u001c3\r��\f�|PHU����L\u0014b���\u00134�����Ȗ�/�i�kf[/\u0004��(mxtb%^.�*���>�\u0015Q�H\u0010�r�E�zE!���Z\u000ejV΢iPA�g�\u0004)���I7.V�\u001a�k�\u001cN\u001eP�E�ƌǂ\u0002�Y8\u00030�Y�&n%�/�9\u001c�4����tW�<6\u001e��Ж&n%�/�9�&n%�/�9�.���'\u001a�Q�y'\u0012��}��A'��\u0016(L\u001c��HS�t\u0014\u0011e���ؑ \n�)���w2�Ǡ���\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\u0012:�զ�|���\u0001��e\u0006?��\u0015\u0012o{�\n�;\u0013�}\u0016,Z�mI��e���sJ\u00168���*1i�At�a�\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\u001b0�l�ϚIBn�;�\u0014�1Y�փ\u0016�5*p��\u0013�P�8��\u000b\u0003\u0000j��\u000fE�F��ٓ1\u001e\u0012����,Y���l�Hl��X u���٦\u0019�5[�b%^.�*��kK��AxR�T��\u0005�v*{�\u0012/t\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\u001c�9�*\u0012��I)V��{6dژf\u0005���\\���Xf�z�bO��\"ȢQ�C�T��16� \u001a�A���p+��,�-J�,�@\u0005!\u0005\u000f�F,��ޘUoj��\u0016T\u0013-(�M�ꉡ.\u001e��V����t�\u0001�-B=\u001b)V�æ�)5����@`)ޱuw�rX����=\u0014!d�5�*��N\u0017(Z\u0018��f�v����AYv�\u001a�\f��\u001ba������\"��דe\u001d�\t^�\b˳#�󬩣������\u0007�}\u0012�/��Ń�i�\u000f�\bݮ��.\u0018�;VW��\u000b˟\u001em�L=�d�^�3�vf�m\u000f�\\�M�$�\u0003X&�!�����;�{���|͟�\u0000�d��B����Xf��k�7\u0002Q=Z�\u0006;�5���-��\u000f�=2W\u0000ð2h�w���;ZOJ�_¼\u0004tX���Ӌ������s#\t\u0006��?Yk�Ak\u0006\u0004q�&�����\u001e���\u000f���k��d�d�\u001b8�Xw\u001b���8=\u001a�����<�R\n��\n�\u0005�*W��Urwdב\ti\u0014\"��G��L�\b\u001d4�<\u001e���L��]hu��\u0014�\u0012��R�Z�\r8�k�Oj�d7\u0017#&�QK\u0002�\u0005ֆ�ٯ|�D\u001c��H���)\t�5�\rC\b[�~�Y�:���F]u��=_�\"$K��%��<��v�",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": []
+    }
+  ],
+  "url_encoded_candidates_preview": [
+    {
+      "segment_no": 575,
+      "stream_key": "95.211.193.31:80-192.168.106.131:1199-tcp",
+      "protocol": "TCP",
+      "position": "http_header.response_line",
+      "source": "http_header.response_line.kv_token.p",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "lk806QwfNfVdqAZnc%2BYIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy%2BvMTNIDs1NffyJaeL%2FppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q%2F0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i%2BQOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC%2BtTi5xliFOfbyHqJWbzO4FM%2F%2BVVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj%2BCpxUSb3uXCq47E%2FCefRYsWo9tSYr9ZX%2F9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG%2BqtjSuYzhFh86uy%2F%2BFzfPeLkN7fdkzinUhx1RvrO4bMKJsoc%2BaSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru%2BA9Fj0aPv9mTMR4S5%2Ffd8ixZ9crRbJ9IbN3GWCB1%2Bb%2F32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU%2B7MFqnYqe4QSL3QBb%2FpUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q%2FYk%2B7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa%2BvjdFAYCnesXV32nJYgpOk%2Fz0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj%2FvOsqaPnnvWq%2B%2FuFB9x9EtYvlbzFg79pwA%2FmCH%2Fdrtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte%2FKO1vJ8zZ%2FrAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt%2BLUP%2BT0yVwDDsDJoyXfv7dk7Wk9K41%2FCvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H%2B4HviSvg%2BF9vBrgr1k9mSwGzibWHcb5%2FrFOD0a86z2h%2F6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo%2FfR7%2BxTIEIHTSRPB6X1e6NTO%2FAXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck%2FNI94uPKQmyfzWSDUMIW%2Fh%2BxFmZOoen3UZddZP%2BPV%2F%2FIiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct%2FIIwk",
+      "decoded_preview": "�O4�\f\u001f5�]�\u0006gs�\bh\u0012�U���0ѧ\u001c3\r��\f�|PHU����L\u0014b���\u00134�����Ȗ�/�i�kf[/\u0004��(mxtb%^.�*���>�\u0015Q�H\u0010�r�E�zE!���Z\u000ejV΢iPA�g�\u0004)���I7.V�\u001a�k�\u001cN\u001eP�E�ƌǂ\u0002�Y8\u00030�Y�&n%�/�9\u001c�4����tW�<6\u001e��Ж&n%�/�9�&n%�/�9�.���'\u001a�Q�y'\u0012��}��A'��\u0016(L\u001c��HS�t\u0014\u0011e���ؑ \n�)���w2�Ǡ���\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\u0012:�զ�|���\u0001��e\u0006?��\u0015\u0012o{�\n�;\u0013�}\u0016,Z�mI��e���sJ\u00168���*1i�At�a�\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\u001b0�l�ϚIBn�;�\u0014�1Y�փ\u0016�5*p��\u0013�P�8��\u000b\u0003\u0000j��\u000fE�F��ٓ1\u001e\u0012����,Y���l�Hl��X u���٦\u0019�5[�b%^.�*��kK��AxR�T��\u0005�v*{�\u0012/t\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\u001c�9�*\u0012��I)V��{6dژf\u0005���\\���Xf�z�bO��\"ȢQ�C�T��16� \u001a�A���p+��,�-J�,�@\u0005!\u0005\u000f�F,��ޘUoj��\u0016T\u0013-(�M�ꉡ.\u001e��V����t�\u0001�-B=\u001b)V�æ�)5����@`)ޱuw�rX����=\u0014!d�5�*��N\u0017(Z\u0018��f�v����AYv�\u001a�\f��\u001ba������\"��דe\u001d�\t^�\b˳#�󬩣������\u0007�}\u0012�/��Ń�i�\u000f�\bݮ��.\u0018�;VW��\u000b˟\u001em�L=�d�^�3�vf�m\u000f�\\�M�$�\u0003X&�!�����;�{���|͟�\u0000�d��B����Xf��k�7\u0002Q=Z�\u0006;�5���-��\u000f�=2W\u0000ð2h�w���;ZOJ�_¼\u0004tX���Ӌ������s#\t\u0006��?Yk�Ak\u0006\u0004q�&�����\u001e���\u000f���k��d�d�\u001b8�Xw\u001b���8=\u001a�����<�R\n��\n�\u0005�*W��Urwdב\ti\u0014\"��G��L�\b\u001d4�<\u001e���L��]hu��\u0014�\u0012��R�Z�\r8�k�Oj�d7\u0017#&�QK\u0002�\u0005ֆ�ٯ|�D\u001c��H���)\t�5�\rC\b[�~�Y�:���F]u��=_�\"$K��%��<��v�",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": [],
+      "url_encoding_signals": [
+        "%2b",
+        "%2f->/"
+      ]
+    },
+    {
+      "segment_no": 582,
+      "stream_key": "192.168.106.131:1200-199.115.119.13:80-tcp",
+      "protocol": "TCP",
+      "position": "tcp_payload.text",
+      "source": "tcp_payload.text.kv_token.p",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "lk806QwfNfVdqAZnc%2BYIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy%2BvMTNIDs1NffyJaeL%2FppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q%2F0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i%2BQOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC%2BtTi5xliFOfbyHqJWbzO4FM%2F%2BVVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj%2BCpxUSb3uXCq47E%2FCefRYsWo9tSYr9ZX%2F9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG%2BqtjSuYzhFh86uy%2F%2BFzfPeLkN7fdkzinUhx1RvrO4bMKJsoc%2BaSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru%2BA9Fj0aPv9mTMR4S5%2Ffd8ixZ9crRbJ9IbN3GWCB1%2Bb%2F32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU%2B7MFqnYqe4QSL3QBb%2FpUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q%2FYk%2B7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa%2BvjdFAYCnesXV32nJYgpOk%2Fz0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj%2FvOsqaPnnvWq%2B%2FuFB9x9EtYvlbzFg79pwA%2FmCH%2Fdrtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte%2FKO1vJ8zZ%2FrAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt%2BLUP%2BT0yVwDDsDJoyXfv7dk7Wk9K41%2FCvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H%2B4HviSvg%2BF9vBrgr1k9mSwGzibWHcb5%2FrFOD0a86z2h%2F6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo%2FfR7%2BxTIEIHTSRPB6X1e6NTO%2FAXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck%2FNI94uPKQmyfzWSDU",
+      "decoded_preview": "�O4�\f\u001f5�]�\u0006gs�\bh\u0012�U���0ѧ\u001c3\r��\f�|PHU����L\u0014b���\u00134�����Ȗ�/�i�kf[/\u0004��(mxtb%^.�*���>�\u0015Q�H\u0010�r�E�zE!���Z\u000ejV΢iPA�g�\u0004)���I7.V�\u001a�k�\u001cN\u001eP�E�ƌǂ\u0002�Y8\u00030�Y�&n%�/�9\u001c�4����tW�<6\u001e��Ж&n%�/�9�&n%�/�9�.���'\u001a�Q�y'\u0012��}��A'��\u0016(L\u001c��HS�t\u0014\u0011e���ؑ \n�)���w2�Ǡ���\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\u0012:�զ�|���\u0001��e\u0006?��\u0015\u0012o{�\n�;\u0013�}\u0016,Z�mI��e���sJ\u00168���*1i�At�a�\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\u001b0�l�ϚIBn�;�\u0014�1Y�փ\u0016�5*p��\u0013�P�8��\u000b\u0003\u0000j��\u000fE�F��ٓ1\u001e\u0012����,Y���l�Hl��X u���٦\u0019�5[�b%^.�*��kK��AxR�T��\u0005�v*{�\u0012/t\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\u001c�9�*\u0012��I)V��{6dژf\u0005���\\���Xf�z�bO��\"ȢQ�C�T��16� \u001a�A���p+��,�-J�,�@\u0005!\u0005\u000f�F,��ޘUoj��\u0016T\u0013-(�M�ꉡ.\u001e��V����t�\u0001�-B=\u001b)V�æ�)5����@`)ޱuw�rX����=\u0014!d�5�*��N\u0017(Z\u0018��f�v����AYv�\u001a�\f��\u001ba������\"��דe\u001d�\t^�\b˳#�󬩣������\u0007�}\u0012�/��Ń�i�\u000f�\bݮ��.\u0018�;VW��\u000b˟\u001em�L=�d�^�3�vf�m\u000f�\\�M�$�\u0003X&�!�����;�{���|͟�\u0000�d��B����Xf��k�7\u0002Q=Z�\u0006;�5���-��\u000f�=2W\u0000ð2h�w���;ZOJ�_¼\u0004tX���Ӌ������s#\t\u0006��?Yk�Ak\u0006\u0004q�&�����\u001e���\u000f���k��d�d�\u001b8�Xw\u001b���8=\u001a�����<�R\n��\n�\u0005�*W��Urwdב\ti\u0014\"��G��L�\b\u001d4�<\u001e���L��]hu��\u0014�\u0012��R�Z�\r8�k�Oj�d7\u0017#&�QK\u0002�\u0005ֆ�ٯ|�D\u001c��H���)\t�5�\r",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": [],
+      "url_encoding_signals": [
+        "%2b",
+        "%2f->/"
+      ]
+    },
+    {
+      "segment_no": 583,
+      "stream_key": "192.168.106.131:1200-199.115.119.13:80-tcp",
+      "protocol": "TCP",
+      "position": "http_request.uri",
+      "source": "http_request.uri.kv_token.p",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "lk806QwfNfVdqAZnc%2BYIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy%2BvMTNIDs1NffyJaeL%2FppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q%2F0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i%2BQOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC%2BtTi5xliFOfbyHqJWbzO4FM%2F%2BVVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj%2BCpxUSb3uXCq47E%2FCefRYsWo9tSYr9ZX%2F9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG%2BqtjSuYzhFh86uy%2F%2BFzfPeLkN7fdkzinUhx1RvrO4bMKJsoc%2BaSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru%2BA9Fj0aPv9mTMR4S5%2Ffd8ixZ9crRbJ9IbN3GWCB1%2Bb%2F32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU%2B7MFqnYqe4QSL3QBb%2FpUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q%2FYk%2B7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa%2BvjdFAYCnesXV32nJYgpOk%2Fz0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj%2FvOsqaPnnvWq%2B%2FuFB9x9EtYvlbzFg79pwA%2FmCH%2Fdrtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte%2FKO1vJ8zZ%2FrAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt%2BLUP%2BT0yVwDDsDJoyXfv7dk7Wk9K41%2FCvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H%2B4HviSvg%2BF9vBrgr1k9mSwGzibWHcb5%2FrFOD0a86z2h%2F6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo%2FfR7%2BxTIEIHTSRPB6X1e6NTO%2FAXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck%2FNI94uPKQmyfzWSDUMIW%2Fh%2BxFmZOoen3UZddZP%2BPV%2F%2FIiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct%2FIIwk",
+      "decoded_preview": "�O4�\f\u001f5�]�\u0006gs�\bh\u0012�U���0ѧ\u001c3\r��\f�|PHU����L\u0014b���\u00134�����Ȗ�/�i�kf[/\u0004��(mxtb%^.�*���>�\u0015Q�H\u0010�r�E�zE!���Z\u000ejV΢iPA�g�\u0004)���I7.V�\u001a�k�\u001cN\u001eP�E�ƌǂ\u0002�Y8\u00030�Y�&n%�/�9\u001c�4����tW�<6\u001e��Ж&n%�/�9�&n%�/�9�.���'\u001a�Q�y'\u0012��}��A'��\u0016(L\u001c��HS�t\u0014\u0011e���ؑ \n�)���w2�Ǡ���\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\u0012:�զ�|���\u0001��e\u0006?��\u0015\u0012o{�\n�;\u0013�}\u0016,Z�mI��e���sJ\u00168���*1i�At�a�\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\u001b0�l�ϚIBn�;�\u0014�1Y�փ\u0016�5*p��\u0013�P�8��\u000b\u0003\u0000j��\u000fE�F��ٓ1\u001e\u0012����,Y���l�Hl��X u���٦\u0019�5[�b%^.�*��kK��AxR�T��\u0005�v*{�\u0012/t\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\u001c�9�*\u0012��I)V��{6dژf\u0005���\\���Xf�z�bO��\"ȢQ�C�T��16� \u001a�A���p+��,�-J�,�@\u0005!\u0005\u000f�F,��ޘUoj��\u0016T\u0013-(�M�ꉡ.\u001e��V����t�\u0001�-B=\u001b)V�æ�)5����@`)ޱuw�rX����=\u0014!d�5�*��N\u0017(Z\u0018��f�v����AYv�\u001a�\f��\u001ba������\"��דe\u001d�\t^�\b˳#�󬩣������\u0007�}\u0012�/��Ń�i�\u000f�\bݮ��.\u0018�;VW��\u000b˟\u001em�L=�d�^�3�vf�m\u000f�\\�M�$�\u0003X&�!�����;�{���|͟�\u0000�d��B����Xf��k�7\u0002Q=Z�\u0006;�5���-��\u000f�=2W\u0000ð2h�w���;ZOJ�_¼\u0004tX���Ӌ������s#\t\u0006��?Yk�Ak\u0006\u0004q�&�����\u001e���\u000f���k��d�d�\u001b8�Xw\u001b���8=\u001a�����<�R\n��\n�\u0005�*W��Urwdב\ti\u0014\"��G��L�\b\u001d4�<\u001e���L��]hu��\u0014�\u0012��R�Z�\r8�k�Oj�d7\u0017#&�QK\u0002�\u0005ֆ�ٯ|�D\u001c��H���)\t�5�\rC\b[�~�Y�:���F]u��=_�\"$K��%��<��v�",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": [],
+      "url_encoding_signals": [
+        "%2b",
+        "%2f->/"
+      ]
+    },
+    {
+      "segment_no": 600,
+      "stream_key": "199.115.119.13:80-192.168.106.131:1200-tcp",
+      "protocol": "HTTP",
+      "position": "http_request.uri",
+      "source": "http_request.uri.kv_token.p",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_binary",
+      "raw": "lk806QwfNfVdqAZnc%2BYIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy%2BvMTNIDs1NffyJaeL%2FppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q%2F0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i%2BQOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC%2BtTi5xliFOfbyHqJWbzO4FM%2F%2BVVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj%2BCpxUSb3uXCq47E%2FCefRYsWo9tSYr9ZX%2F9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG%2BqtjSuYzhFh86uy%2F%2BFzfPeLkN7fdkzinUhx1RvrO4bMKJsoc%2BaSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru%2BA9Fj0aPv9mTMR4S5%2Ffd8ixZ9crRbJ9IbN3GWCB1%2Bb%2F32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU%2B7MFqnYqe4QSL3QBb%2FpUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q%2FYk%2B7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa%2BvjdFAYCnesXV32nJYgpOk%2Fz0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj%2FvOsqaPnnvWq%2B%2FuFB9x9EtYvlbzFg79pwA%2FmCH%2Fdrtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte%2FKO1vJ8zZ%2FrAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt%2BLUP%2BT0yVwDDsDJoyXfv7dk7Wk9K41%2FCvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H%2B4HviSvg%2BF9vBrgr1k9mSwGzibWHcb5%2FrFOD0a86z2h%2F6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo%2FfR7%2BxTIEIHTSRPB6X1e6NTO%2FAXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck%2FNI94uPKQmyfzWSDUMIW%2Fh%2BxFmZOoen3UZddZP%2BPV%2F%2FIiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct%2FIIwk",
+      "decoded_preview": "�O4�\f\u001f5�]�\u0006gs�\bh\u0012�U���0ѧ\u001c3\r��\f�|PHU����L\u0014b���\u00134�����Ȗ�/�i�kf[/\u0004��(mxtb%^.�*���>�\u0015Q�H\u0010�r�E�zE!���Z\u000ejV΢iPA�g�\u0004)���I7.V�\u001a�k�\u001cN\u001eP�E�ƌǂ\u0002�Y8\u00030�Y�&n%�/�9\u001c�4����tW�<6\u001e��Ж&n%�/�9�&n%�/�9�.���'\u001a�Q�y'\u0012��}��A'��\u0016(L\u001c��HS�t\u0014\u0011e���ؑ \n�)���w2�Ǡ���\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\u0012:�զ�|���\u0001��e\u0006?��\u0015\u0012o{�\n�;\u0013�}\u0016,Z�mI��e���sJ\u00168���*1i�At�a�\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\u001b0�l�ϚIBn�;�\u0014�1Y�փ\u0016�5*p��\u0013�P�8��\u000b\u0003\u0000j��\u000fE�F��ٓ1\u001e\u0012����,Y���l�Hl��X u���٦\u0019�5[�b%^.�*��kK��AxR�T��\u0005�v*{�\u0012/t\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\u001c�9�*\u0012��I)V��{6dژf\u0005���\\���Xf�z�bO��\"ȢQ�C�T��16� \u001a�A���p+��,�-J�,�@\u0005!\u0005\u000f�F,��ޘUoj��\u0016T\u0013-(�M�ꉡ.\u001e��V����t�\u0001�-B=\u001b)V�æ�)5����@`)ޱuw�rX����=\u0014!d�5�*��N\u0017(Z\u0018��f�v����AYv�\u001a�\f��\u001ba������\"��דe\u001d�\t^�\b˳#�󬩣������\u0007�}\u0012�/��Ń�i�\u000f�\bݮ��.\u0018�;VW��\u000b˟\u001em�L=�d�^�3�vf�m\u000f�\\�M�$�\u0003X&�!�����;�{���|͟�\u0000�d��B����Xf��k�7\u0002Q=Z�\u0006;�5���-��\u000f�=2W\u0000ð2h�w���;ZOJ�_¼\u0004tX���Ӌ������s#\t\u0006��?Yk�Ak\u0006\u0004q�&�����\u001e���\u000f���k��d�d�\u001b8�Xw\u001b���8=\u001a�����<�R\n��\n�\u0005�*W��Urwdב\ti\u0014\"��G��L�\b\u001d4�<\u001e���L��]hu��\u0014�\u0012��R�Z�\r8�k�Oj�d7\u0017#&�QK\u0002�\u0005ֆ�ٯ|�D\u001c��H���)\t�5�\rC\b[�~�Y�:���F]u��=_�\"$K��%��<��v�",
+      "normalized_payload": null,
+      "residue_signals": [
+        "decoded_binary_or_obfuscated_payload"
+      ],
+      "nested_candidates": [],
+      "url_encoding_signals": [
+        "%2b",
+        "%2f->/"
+      ]
+    },
+    {
+      "segment_no": 1536,
+      "stream_key": "199.115.115.136:1337-192.168.106.131:1222-tcp",
+      "protocol": "HTTP",
+      "position": "http_header.response_line",
+      "source": "http_header.response_line.embedded_url[0].query_param.s",
+      "candidate_type": "http_encoded_value",
+      "decode_status": "success_compressed",
+      "raw": "eAFdk0GPozgQhf_KXDa3TdsEuslKrZUdbAjp0LHBxnAjmEAaEphAJqSVH7_0jDS72lOp6lW9w1N91TB0fz09XQp9vBT5MM_0n4ei0P08b0_TtL82Q__0d5ddhnNxOepXCE3Tfp5lXTc1xrNtzvrr_ud8-bKYHbtXaNhz-GzOIXiZGwac5V97LxBa5qw4D5f7a6GveTYc2_MfBsjb83A8X4_ncmq6S3so-n5Ssmb2vX9dV7c1qmRClUwwkAHhfqJYRynY3pWUaCXzSFOLYnwrCEq0D0ROXZlJkkoGme2V6S6EicJl_-ZhkaRNl4R0YPgj39FRE0a7VMGbpCxfuBAj1gim4RhJ3K5C2WBVkYgYwQ6NPpfMgqrx3ahJlCv9whkJT2CjHUKlc-YHAXzfITJVAHHC6UfM6S8_aUVO3RScNgdVUU0UTJXwEyHHT1XDVSgwiXmgf_tR-EY8WUx-BzKCQDS3mGB8UqLPMSM6b1LFarqOiP2GxIhCBwrMWEKZNByQIg9K1xnLVJbL1fstWaFbnUefKMfjdE_bDUJbT1B5jalFpEykloPg0N4jyDQStsc-ykLQpEAkNUNMclJDGo29Fo1EAUJ-JC1GvDSXZHiX1XaLcId4XS4kXXoxnTIZe-7VLEEYHMLRR9glu5CsN6TJ7wqAKRt775atihoeBTe0xmTtRvfqTfDppkTIQT4RJa8cyGkotavJwKmzlW6Zx8zwI-a07yHZbghl7ZYj7aC1ckineYyvXtiCwAkEUTSLATux2ufxJ2EEV3VcV6u4wmLjkHc6TkExvlFClvsKfA8c7ssxubmlObiVnXmsRZKxMLhPfqRR9ANlzhEElCUkbOD0b8E5om24O-ITcm7nXcTGXag3sRCEGCJ3OfjENWm9cr33KovHZf9jf1oeV0eYP76QeUA4wfL4HymPa5_pYj8cLkXxRd8DzAGA5gt4_Cbm27-8fPsvLQ8DmIZl2oupGPYDLszlwgLWi_Ul_AMeZj_v",
+      "decoded_preview": "http://redirect.ad-feeds.com/results/?partnerid=114486&appid=2684&subid=11973&ip=128.164.107.221&cid=271154&entry=education%20continuing%20professional&qs=IhwIAhVYFXVYB0VNERJYXQpFF0MyXVVACVcTdF5FBBweEAYdJ0UcFGVaVEZVQ1Q8HgZPS1YXBgsLHBUYZlpYSFtQBjcPFxdEQFpZX1wVFQc3G1BAQlUQd1xTVBoCSVlBXhETE2NPAxJRVQ51XlJGTlYXGVJeDxERY1ldDEFVDnRfU0JJDEVZX0ARERFjWRFAQlUQdV5TDkleRFlfXhFdEX1ZXUJYUVxzXk1CSUBEWRNdDxERY1ldDF1LEHVeU0JfEx0NUlwWEBBmXUscBQEdclZXQkFITE8LAUxASD1UBQQYFQV2D0ZAH1VGDxgZVg9COwYCAwkcTzAcBxscBFoKAAMHUFVuWF5EVVYVdVtUR18bA1QdAU8HQjgeUFYeAEZ4SBEcEk1FTxsdUlVANAAJTV5QEHZcVEtOVhMMABpARkg3VF9HWFERYxsRHkQYAB0fSxJABGEPSEIKElcyX00RER8bGgoXTlRTNwAIBEIGTyhLURQYAgAADAJEUgRhD1RFSVdGdEtRFDMVGgcWQ2JTQDoOSEMKEFQoMRAdDAIXDEpdRWBuHSo0NDNUEXFaW0QmQkJRWzEQEBhkWkhCWhBUKDEOFx0ZAQRKXUVgbh0qNDRJVxYwGg4tGh8aHQoAVQQSNyo0NElXFjAaDi0NFQYESl1FBBNnTFoSPiBmADwnPTQxPSdKWUUEE2UcGR0zBkEoHgIbHh5RWgsvbm9iCi1c|2684|11973|128.164.107.221|usadebtfree.com|0.001470|education continuing professional|2042548304228|1349350575|204",
+      "normalized_payload": null,
+      "residue_signals": [],
+      "nested_candidates": [],
+      "url_encoding_signals": [
+        "%20"
+      ]
+    }
+  ],
+  "excluded_streams": [
+    {
+      "stream_key": "192.168.106.131:1215-74.125.228.101:443-tcp",
+      "protocol": "TLS",
+      "reason": "encrypted_stream_excluded",
+      "segment_count": 3
+    },
+    {
+      "stream_key": "74.125.228.101:443-192.168.106.131:1215-tcp",
+      "protocol": "TLS",
+      "reason": "encrypted_stream_excluded",
+      "segment_count": 28
+    }
+  ],
+  "recommended_tool_hint": "url_decode_tool",
+  "tool_routing_hints": {
+    "url_decode_tool": {
+      "enabled": true,
+      "reason": "Use when percent-encoded URI/query/header/payload candidates are present.",
+      "preferred_decision": "call_other_tool",
+      "default_options": {
+        "recursive": true,
+        "max_depth": 2,
+        "plus_as_space": true,
+        "deduplicate": true
+      }
+    }
+  },
+  "llm_review_prompt": "You are reviewing decoded packet analysis results.\nDo NOT do broad malware commentary.\nYour task is only to decide whether additional decode verification is needed,\nand whether the case should be classified as stop, retry_same_tool, call_other_tool,\nor stop_with_exclusion.\n\nCurrent completion_status: url_encoded_candidate_detected\nReason: URL/percent-encoded payload candidates were detected and should be reviewed with url_decode_tool.\n\nDecoded candidates preview:\n[\n  {\n    \"segment_no\": 544,\n    \"stream_key\": \"192.168.106.131:1197-31.184.244.180:80-tcp\",\n    \"protocol\": \"HTTP\",\n    \"position\": \"http_request.uri\",\n    \"source\": \"http_request.uri.path_segment\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"UFxHW1hYR1hQWkdaWEZWCgUADVRYUANdWBkPGRpQABNZ\",\n    \"decoded_preview\": \"P\\\\G[XXGXPZGZXFV\\n\\u0005\\u0000\\rTXP\\u0003]X\\u0019\\u000f\\u0019\\u001aP\\u0000\\u0013Y\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": []\n  },\n  {\n    \"segment_no\": 546,\n    \"stream_key\": \"31.184.244.180:80-192.168.106.131:1197-tcp\",\n    \"protocol\": \"HTTP\",\n    \"position\": \"http_request.uri\",\n    \"source\": \"http_request.uri.path_segment\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"UFxHW1hYR1hQWkdaWEZWCgUADVRYUANdWBkPGRpQABNZ\",\n    \"decoded_preview\": \"P\\\\G[XXGXPZGZXFV\\n\\u0005\\u0000\\rTXP\\u0003]X\\u0019\\u000f\\u0019\\u001aP\\u0000\\u0013Y\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": []\n  },\n  {\n    \"segment_no\": 570,\n    \"stream_key\": \"192.168.106.131:1199-95.211.193.31:80-tcp\",\n    \"protocol\": \"HTTP\",\n    \"position\": \"http_header.request_line\",\n    \"source\": \"http_header.request_line.embedded_url[0].query_param.afdt\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"aqt0w9f0w7u05m6xx18jwx9u2k03p1bidjzoquuc4le4\",\n    \"decoded_preview\": \"j�t���û��n��_#�\\u001fn�M7�V�v<���W�\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": []\n  },\n  {\n    \"segment_no\": 575,\n    \"stream_key\": \"95.211.193.31:80-192.168.106.131:1199-tcp\",\n    \"protocol\": \"TCP\",\n    \"position\": \"http_header.response_line\",\n    \"source\": \"http_header.response_line.embedded_url[0].query_param.p\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"lk806QwfNfVdqAZnc+YIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy+vMTNIDs1NffyJaeL/ppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q/0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i+QOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC+tTi5xliFOfbyHqJWbzO4FM/+VVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj+CpxUSb3uXCq47E/CefRYsWo9tSYr9ZX/9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG+qtjSuYzhFh86uy/+FzfPeLkN7fdkzinUhx1RvrO4bMKJsoc+aSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru+A9Fj0aPv9mTMR4S5/fd8ixZ9crRbJ9IbN3GWCB1+b/32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU+7MFqnYqe4QSL3QBb/pUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q/Yk+7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa+vjdFAYCnesXV32nJYgpOk/z0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj/vOsqaPnnvWq+/uFB9x9EtYvlbzFg79pwA/mCH/drtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte/KO1vJ8zZ/rAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt+LUP+T0yVwDDsDJoyXfv7dk7Wk9K41/CvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H+4HviSvg+F9vBrgr1k9mSwGzibWHcb5/rFOD0a86z2h/6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo/fR7+xTIEIHTSRPB6X1e6NTO/AXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck/NI94uPKQmyfzWSDUMIW/h+xFmZOoen3UZddZP+PV//IiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct/IIwk\",\n    \"decoded_preview\": \"�O4�\\f\\u001f5�]�\\u0006gs�\\bh\\u0012�U���0ѧ\\u001c3\\r��\\f�|PHU����L\\u0014b���\\u00134�����Ȗ�/�i�kf[/\\u0004��(mxtb%^.�*���>�\\u0015Q�H\\u0010�r�E�zE!���Z\\u000ejV΢iPA�g�\\u0004)���I7.V�\\u001a�k�\\u001cN\\u001eP�E�ƌǂ\\u0002�Y8\\u00030�Y�&n%�/�9\\u001c�4����tW�<6\\u001e��Ж&n%�/�9�&n%�/�9�.���'\\u001a�Q�y'\\u0012��}��A'��\\u0016(L\\u001c��HS�t\\u0014\\u0011e���ؑ \\n�)���w2�Ǡ���\\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\\u0012:�զ�|���\\u0001��e\\u0006?��\\u0015\\u0012o{�\\n�;\\u0013�}\\u0016,Z�mI��e���sJ\\u00168���*1i�At�a�\\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\\u001b0�l�ϚIBn�;�\\u0014�1Y�փ\\u0016�5*p��\\u0013�P�8��\\u000b\\u0003\\u0000j��\\u000fE�F��ٓ1\\u001e\\u0012����,Y���l�Hl��X u���٦\\u0019�5[�b%^.�*��kK��AxR�T��\\u0005�v*{�\\u0012/t\\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\\u001c�9�*\\u0012��I)V��{6dژf\\u0005���\\\\���Xf�z�bO��\\\"ȢQ�C�T��16� \\u001a�A���p+��,�-J�,�@\\u0005!\\u0005\\u000f�F,��ޘUoj��\\u0016T\\u0013-(�M�ꉡ.\\u001e��V����t�\\u0001�-B=\\u001b)V�æ�)5����@`)ޱuw�rX����=\\u0014!d�5�*��N\\u0017(Z\\u0018��f�v����AYv�\\u001a�\\f��\\u001ba������\\\"��דe\\u001d�\\t^�\\b˳#�󬩣������\\u0007�}\\u0012�/��Ń�i�\\u000f�\\bݮ��.\\u0018�;VW��\\u000b˟\\u001em�L=�d�^�3�vf�m\\u000f�\\\\�M�$�\\u0003X&�!�����;�{���|͟�\\u0000�d��B����Xf��k�7\\u0002Q=Z�\\u0006;�5���-��\\u000f�=2W\\u0000ð2h�w���;ZOJ�_¼\\u0004tX���Ӌ������s#\\t\\u0006��?Yk�Ak\\u0006\\u0004q�&�����\\u001e���\\u000f���k��d�d�\\u001b8�Xw\\u001b���8=\\u001a�����<�R\\n��\\n�\\u0005�*W��Urwdב\\ti\\u0014\\\"��G��L�\\b\\u001d4�<\\u001e���L��]hu��\\u0014�\\u0012��R�Z�\\r8�k�Oj�d7\\u0017#&�QK\\u0002�\\u0005ֆ�ٯ|�D\\u001c��H���)\\t�5�\\rC\\b[�~�Y�:���F]u��=_�\\\"$K��%��<��v�\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": []\n  },\n  {\n    \"segment_no\": 575,\n    \"stream_key\": \"95.211.193.31:80-192.168.106.131:1199-tcp\",\n    \"protocol\": \"TCP\",\n    \"position\": \"http_header.response_line\",\n    \"source\": \"http_header.response_line.kv_token.p\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"lk806QwfNfVdqAZnc%2BYIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy%2BvMTNIDs1NffyJaeL%2FppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q%2F0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i%2BQOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC%2BtTi5xliFOfbyHqJWbzO4FM%2F%2BVVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj%2BCpxUSb3uXCq47E%2FCefRYsWo9tSYr9ZX%2F9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG%2BqtjSuYzhFh86uy%2F%2BFzfPeLkN7fdkzinUhx1RvrO4bMKJsoc%2BaSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru%2BA9Fj0aPv9mTMR4S5%2Ffd8ixZ9crRbJ9IbN3GWCB1%2Bb%2F32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU%2B7MFqnYqe4QSL3QBb%2FpUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q%2FYk%2B7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa%2BvjdFAYCnesXV32nJYgpOk%2Fz0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj%2FvOsqaPnnvWq%2B%2FuFB9x9EtYvlbzFg79pwA%2FmCH%2Fdrtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte%2FKO1vJ8zZ%2FrAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt%2BLUP%2BT0yVwDDsDJoyXfv7dk7Wk9K41%2FCvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H%2B4HviSvg%2BF9vBrgr1k9mSwGzibWHcb5%2FrFOD0a86z2h%2F6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo%2FfR7%2BxTIEIHTSRPB6X1e6NTO%2FAXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck%2FNI94uPKQmyfzWSDUMIW%2Fh%2BxFmZOoen3UZddZP%2BPV%2F%2FIiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct%2FIIwk\",\n    \"decoded_preview\": \"�O4�\\f\\u001f5�]�\\u0006gs�\\bh\\u0012�U���0ѧ\\u001c3\\r��\\f�|PHU����L\\u0014b���\\u00134�����Ȗ�/�i�kf[/\\u0004��(mxtb%^.�*���>�\\u0015Q�H\\u0010�r�E�zE!���Z\\u000ejV΢iPA�g�\\u0004)���I7.V�\\u001a�k�\\u001cN\\u001eP�E�ƌǂ\\u0002�Y8\\u00030�Y�&n%�/�9\\u001c�4����tW�<6\\u001e��Ж&n%�/�9�&n%�/�9�.���'\\u001a�Q�y'\\u0012��}��A'��\\u0016(L\\u001c��HS�t\\u0014\\u0011e���ؑ \\n�)���w2�Ǡ���\\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\\u0012:�զ�|���\\u0001��e\\u0006?��\\u0015\\u0012o{�\\n�;\\u0013�}\\u0016,Z�mI��e���sJ\\u00168���*1i�At�a�\\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\\u001b0�l�ϚIBn�;�\\u0014�1Y�փ\\u0016�5*p��\\u0013�P�8��\\u000b\\u0003\\u0000j��\\u000fE�F��ٓ1\\u001e\\u0012����,Y���l�Hl��X u���٦\\u0019�5[�b%^.�*��kK��AxR�T��\\u0005�v*{�\\u0012/t\\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\\u001c�9�*\\u0012��I)V��{6dژf\\u0005���\\\\���Xf�z�bO��\\\"ȢQ�C�T��16� \\u001a�A���p+��,�-J�,�@\\u0005!\\u0005\\u000f�F,��ޘUoj��\\u0016T\\u0013-(�M�ꉡ.\\u001e��V����t�\\u0001�-B=\\u001b)V�æ�)5����@`)ޱuw�rX����=\\u0014!d�5�*��N\\u0017(Z\\u0018��f�v����AYv�\\u001a�\\f��\\u001ba������\\\"��דe\\u001d�\\t^�\\b˳#�󬩣������\\u0007�}\\u0012�/��Ń�i�\\u000f�\\bݮ��.\\u0018�;VW��\\u000b˟\\u001em�L=�d�^�3�vf�m\\u000f�\\\\�M�$�\\u0003X&�!�����;�{���|͟�\\u0000�d��B����Xf��k�7\\u0002Q=Z�\\u0006;�5���-��\\u000f�=2W\\u0000ð2h�w���;ZOJ�_¼\\u0004tX���Ӌ������s#\\t\\u0006��?Yk�Ak\\u0006\\u0004q�&�����\\u001e���\\u000f���k��d�d�\\u001b8�Xw\\u001b���8=\\u001a�����<�R\\n��\\n�\\u0005�*W��Urwdב\\ti\\u0014\\\"��G��L�\\b\\u001d4�<\\u001e���L��]hu��\\u0014�\\u0012��R�Z�\\r8�k�Oj�d7\\u0017#&�QK\\u0002�\\u0005ֆ�ٯ|�D\\u001c��H���)\\t�5�\\rC\\b[�~�Y�:���F]u��=_�\\\"$K��%��<��v�\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": []\n  }\n]\n\nFailed candidates preview:\n[]\n\nResidue candidates preview:\n[\n  {\n    \"segment_no\": 544,\n    \"stream_key\": \"192.168.106.131:1197-31.184.244.180:80-tcp\",\n    \"protocol\": \"HTTP\",\n    \"position\": \"http_request.uri\",\n    \"source\": \"http_request.uri.path_segment\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"UFxHW1hYR1hQWkdaWEZWCgUADVRYUANdWBkPGRpQABNZ\",\n    \"decoded_preview\": \"P\\\\G[XXGXPZGZXFV\\n\\u0005\\u0000\\rTXP\\u0003]X\\u0019\\u000f\\u0019\\u001aP\\u0000\\u0013Y\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": []\n  },\n  {\n    \"segment_no\": 546,\n    \"stream_key\": \"31.184.244.180:80-192.168.106.131:1197-tcp\",\n    \"protocol\": \"HTTP\",\n    \"position\": \"http_request.uri\",\n    \"source\": \"http_request.uri.path_segment\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"UFxHW1hYR1hQWkdaWEZWCgUADVRYUANdWBkPGRpQABNZ\",\n    \"decoded_preview\": \"P\\\\G[XXGXPZGZXFV\\n\\u0005\\u0000\\rTXP\\u0003]X\\u0019\\u000f\\u0019\\u001aP\\u0000\\u0013Y\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": []\n  },\n  {\n    \"segment_no\": 570,\n    \"stream_key\": \"192.168.106.131:1199-95.211.193.31:80-tcp\",\n    \"protocol\": \"HTTP\",\n    \"position\": \"http_header.request_line\",\n    \"source\": \"http_header.request_line.embedded_url[0].query_param.afdt\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"aqt0w9f0w7u05m6xx18jwx9u2k03p1bidjzoquuc4le4\",\n    \"decoded_preview\": \"j�t���û��n��_#�\\u001fn�M7�V�v<���W�\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": []\n  },\n  {\n    \"segment_no\": 575,\n    \"stream_key\": \"95.211.193.31:80-192.168.106.131:1199-tcp\",\n    \"protocol\": \"TCP\",\n    \"position\": \"http_header.response_line\",\n    \"source\": \"http_header.response_line.embedded_url[0].query_param.p\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"lk806QwfNfVdqAZnc+YIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy+vMTNIDs1NffyJaeL/ppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q/0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i+QOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC+tTi5xliFOfbyHqJWbzO4FM/+VVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj+CpxUSb3uXCq47E/CefRYsWo9tSYr9ZX/9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG+qtjSuYzhFh86uy/+FzfPeLkN7fdkzinUhx1RvrO4bMKJsoc+aSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru+A9Fj0aPv9mTMR4S5/fd8ixZ9crRbJ9IbN3GWCB1+b/32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU+7MFqnYqe4QSL3QBb/pUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q/Yk+7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa+vjdFAYCnesXV32nJYgpOk/z0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj/vOsqaPnnvWq+/uFB9x9EtYvlbzFg79pwA/mCH/drtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte/KO1vJ8zZ/rAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt+LUP+T0yVwDDsDJoyXfv7dk7Wk9K41/CvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H+4HviSvg+F9vBrgr1k9mSwGzibWHcb5/rFOD0a86z2h/6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo/fR7+xTIEIHTSRPB6X1e6NTO/AXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck/NI94uPKQmyfzWSDUMIW/h+xFmZOoen3UZddZP+PV//IiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct/IIwk\",\n    \"decoded_preview\": \"�O4�\\f\\u001f5�]�\\u0006gs�\\bh\\u0012�U���0ѧ\\u001c3\\r��\\f�|PHU����L\\u0014b���\\u00134�����Ȗ�/�i�kf[/\\u0004��(mxtb%^.�*���>�\\u0015Q�H\\u0010�r�E�zE!���Z\\u000ejV΢iPA�g�\\u0004)���I7.V�\\u001a�k�\\u001cN\\u001eP�E�ƌǂ\\u0002�Y8\\u00030�Y�&n%�/�9\\u001c�4����tW�<6\\u001e��Ж&n%�/�9�&n%�/�9�.���'\\u001a�Q�y'\\u0012��}��A'��\\u0016(L\\u001c��HS�t\\u0014\\u0011e���ؑ \\n�)���w2�Ǡ���\\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\\u0012:�զ�|���\\u0001��e\\u0006?��\\u0015\\u0012o{�\\n�;\\u0013�}\\u0016,Z�mI��e���sJ\\u00168���*1i�At�a�\\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\\u001b0�l�ϚIBn�;�\\u0014�1Y�փ\\u0016�5*p��\\u0013�P�8��\\u000b\\u0003\\u0000j��\\u000fE�F��ٓ1\\u001e\\u0012����,Y���l�Hl��X u���٦\\u0019�5[�b%^.�*��kK��AxR�T��\\u0005�v*{�\\u0012/t\\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\\u001c�9�*\\u0012��I)V��{6dژf\\u0005���\\\\���Xf�z�bO��\\\"ȢQ�C�T��16� \\u001a�A���p+��,�-J�,�@\\u0005!\\u0005\\u000f�F,��ޘUoj��\\u0016T\\u0013-(�M�ꉡ.\\u001e��V����t�\\u0001�-B=\\u001b)V�æ�)5����@`)ޱuw�rX����=\\u0014!d�5�*��N\\u0017(Z\\u0018��f�v����AYv�\\u001a�\\f��\\u001ba������\\\"��דe\\u001d�\\t^�\\b˳#�󬩣������\\u0007�}\\u0012�/��Ń�i�\\u000f�\\bݮ��.\\u0018�;VW��\\u000b˟\\u001em�L=�d�^�3�vf�m\\u000f�\\\\�M�$�\\u0003X&�!�����;�{���|͟�\\u0000�d��B����Xf��k�7\\u0002Q=Z�\\u0006;�5���-��\\u000f�=2W\\u0000ð2h�w���;ZOJ�_¼\\u0004tX���Ӌ������s#\\t\\u0006��?Yk�Ak\\u0006\\u0004q�&�����\\u001e���\\u000f���k��d�d�\\u001b8�Xw\\u001b���8=\\u001a�����<�R\\n��\\n�\\u0005�*W��Urwdב\\ti\\u0014\\\"��G��L�\\b\\u001d4�<\\u001e���L��]hu��\\u0014�\\u0012��R�Z�\\r8�k�Oj�d7\\u0017#&�QK\\u0002�\\u0005ֆ�ٯ|�D\\u001c��H���)\\t�5�\\rC\\b[�~�Y�:���F]u��=_�\\\"$K��%��<��v�\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": []\n  },\n  {\n    \"segment_no\": 575,\n    \"stream_key\": \"95.211.193.31:80-192.168.106.131:1199-tcp\",\n    \"protocol\": \"TCP\",\n    \"position\": \"http_header.response_line\",\n    \"source\": \"http_header.response_line.kv_token.p\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"lk806QwfNfVdqAZnc%2BYIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy%2BvMTNIDs1NffyJaeL%2FppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q%2F0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i%2BQOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC%2BtTi5xliFOfbyHqJWbzO4FM%2F%2BVVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj%2BCpxUSb3uXCq47E%2FCefRYsWo9tSYr9ZX%2F9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG%2BqtjSuYzhFh86uy%2F%2BFzfPeLkN7fdkzinUhx1RvrO4bMKJsoc%2BaSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru%2BA9Fj0aPv9mTMR4S5%2Ffd8ixZ9crRbJ9IbN3GWCB1%2Bb%2F32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU%2B7MFqnYqe4QSL3QBb%2FpUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q%2FYk%2B7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa%2BvjdFAYCnesXV32nJYgpOk%2Fz0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj%2FvOsqaPnnvWq%2B%2FuFB9x9EtYvlbzFg79pwA%2FmCH%2Fdrtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte%2FKO1vJ8zZ%2FrAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt%2BLUP%2BT0yVwDDsDJoyXfv7dk7Wk9K41%2FCvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H%2B4HviSvg%2BF9vBrgr1k9mSwGzibWHcb5%2FrFOD0a86z2h%2F6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo%2FfR7%2BxTIEIHTSRPB6X1e6NTO%2FAXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck%2FNI94uPKQmyfzWSDUMIW%2Fh%2BxFmZOoen3UZddZP%2BPV%2F%2FIiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct%2FIIwk\",\n    \"decoded_preview\": \"�O4�\\f\\u001f5�]�\\u0006gs�\\bh\\u0012�U���0ѧ\\u001c3\\r��\\f�|PHU����L\\u0014b���\\u00134�����Ȗ�/�i�kf[/\\u0004��(mxtb%^.�*���>�\\u0015Q�H\\u0010�r�E�zE!���Z\\u000ejV΢iPA�g�\\u0004)���I7.V�\\u001a�k�\\u001cN\\u001eP�E�ƌǂ\\u0002�Y8\\u00030�Y�&n%�/�9\\u001c�4����tW�<6\\u001e��Ж&n%�/�9�&n%�/�9�.���'\\u001a�Q�y'\\u0012��}��A'��\\u0016(L\\u001c��HS�t\\u0014\\u0011e���ؑ \\n�)���w2�Ǡ���\\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\\u0012:�զ�|���\\u0001��e\\u0006?��\\u0015\\u0012o{�\\n�;\\u0013�}\\u0016,Z�mI��e���sJ\\u00168���*1i�At�a�\\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\\u001b0�l�ϚIBn�;�\\u0014�1Y�փ\\u0016�5*p��\\u0013�P�8��\\u000b\\u0003\\u0000j��\\u000fE�F��ٓ1\\u001e\\u0012����,Y���l�Hl��X u���٦\\u0019�5[�b%^.�*��kK��AxR�T��\\u0005�v*{�\\u0012/t\\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\\u001c�9�*\\u0012��I)V��{6dژf\\u0005���\\\\���Xf�z�bO��\\\"ȢQ�C�T��16� \\u001a�A���p+��,�-J�,�@\\u0005!\\u0005\\u000f�F,��ޘUoj��\\u0016T\\u0013-(�M�ꉡ.\\u001e��V����t�\\u0001�-B=\\u001b)V�æ�)5����@`)ޱuw�rX����=\\u0014!d�5�*��N\\u0017(Z\\u0018��f�v����AYv�\\u001a�\\f��\\u001ba������\\\"��דe\\u001d�\\t^�\\b˳#�󬩣������\\u0007�}\\u0012�/��Ń�i�\\u000f�\\bݮ��.\\u0018�;VW��\\u000b˟\\u001em�L=�d�^�3�vf�m\\u000f�\\\\�M�$�\\u0003X&�!�����;�{���|͟�\\u0000�d��B����Xf��k�7\\u0002Q=Z�\\u0006;�5���-��\\u000f�=2W\\u0000ð2h�w���;ZOJ�_¼\\u0004tX���Ӌ������s#\\t\\u0006��?Yk�Ak\\u0006\\u0004q�&�����\\u001e���\\u000f���k��d�d�\\u001b8�Xw\\u001b���8=\\u001a�����<�R\\n��\\n�\\u0005�*W��Urwdב\\ti\\u0014\\\"��G��L�\\b\\u001d4�<\\u001e���L��]hu��\\u0014�\\u0012��R�Z�\\r8�k�Oj�d7\\u0017#&�QK\\u0002�\\u0005ֆ�ٯ|�D\\u001c��H���)\\t�5�\\rC\\b[�~�Y�:���F]u��=_�\\\"$K��%��<��v�\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": []\n  }\n]\n\nURL-encoded candidates preview:\n[\n  {\n    \"segment_no\": 575,\n    \"stream_key\": \"95.211.193.31:80-192.168.106.131:1199-tcp\",\n    \"protocol\": \"TCP\",\n    \"position\": \"http_header.response_line\",\n    \"source\": \"http_header.response_line.kv_token.p\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"lk806QwfNfVdqAZnc%2BYIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy%2BvMTNIDs1NffyJaeL%2FppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q%2F0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i%2BQOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC%2BtTi5xliFOfbyHqJWbzO4FM%2F%2BVVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj%2BCpxUSb3uXCq47E%2FCefRYsWo9tSYr9ZX%2F9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG%2BqtjSuYzhFh86uy%2F%2BFzfPeLkN7fdkzinUhx1RvrO4bMKJsoc%2BaSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru%2BA9Fj0aPv9mTMR4S5%2Ffd8ixZ9crRbJ9IbN3GWCB1%2Bb%2F32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU%2B7MFqnYqe4QSL3QBb%2FpUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q%2FYk%2B7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa%2BvjdFAYCnesXV32nJYgpOk%2Fz0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj%2FvOsqaPnnvWq%2B%2FuFB9x9EtYvlbzFg79pwA%2FmCH%2Fdrtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte%2FKO1vJ8zZ%2FrAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt%2BLUP%2BT0yVwDDsDJoyXfv7dk7Wk9K41%2FCvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H%2B4HviSvg%2BF9vBrgr1k9mSwGzibWHcb5%2FrFOD0a86z2h%2F6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo%2FfR7%2BxTIEIHTSRPB6X1e6NTO%2FAXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck%2FNI94uPKQmyfzWSDUMIW%2Fh%2BxFmZOoen3UZddZP%2BPV%2F%2FIiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct%2FIIwk\",\n    \"decoded_preview\": \"�O4�\\f\\u001f5�]�\\u0006gs�\\bh\\u0012�U���0ѧ\\u001c3\\r��\\f�|PHU����L\\u0014b���\\u00134�����Ȗ�/�i�kf[/\\u0004��(mxtb%^.�*���>�\\u0015Q�H\\u0010�r�E�zE!���Z\\u000ejV΢iPA�g�\\u0004)���I7.V�\\u001a�k�\\u001cN\\u001eP�E�ƌǂ\\u0002�Y8\\u00030�Y�&n%�/�9\\u001c�4����tW�<6\\u001e��Ж&n%�/�9�&n%�/�9�.���'\\u001a�Q�y'\\u0012��}��A'��\\u0016(L\\u001c��HS�t\\u0014\\u0011e���ؑ \\n�)���w2�Ǡ���\\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\\u0012:�զ�|���\\u0001��e\\u0006?��\\u0015\\u0012o{�\\n�;\\u0013�}\\u0016,Z�mI��e���sJ\\u00168���*1i�At�a�\\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\\u001b0�l�ϚIBn�;�\\u0014�1Y�փ\\u0016�5*p��\\u0013�P�8��\\u000b\\u0003\\u0000j��\\u000fE�F��ٓ1\\u001e\\u0012����,Y���l�Hl��X u���٦\\u0019�5[�b%^.�*��kK��AxR�T��\\u0005�v*{�\\u0012/t\\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\\u001c�9�*\\u0012��I)V��{6dژf\\u0005���\\\\���Xf�z�bO��\\\"ȢQ�C�T��16� \\u001a�A���p+��,�-J�,�@\\u0005!\\u0005\\u000f�F,��ޘUoj��\\u0016T\\u0013-(�M�ꉡ.\\u001e��V����t�\\u0001�-B=\\u001b)V�æ�)5����@`)ޱuw�rX����=\\u0014!d�5�*��N\\u0017(Z\\u0018��f�v����AYv�\\u001a�\\f��\\u001ba������\\\"��דe\\u001d�\\t^�\\b˳#�󬩣������\\u0007�}\\u0012�/��Ń�i�\\u000f�\\bݮ��.\\u0018�;VW��\\u000b˟\\u001em�L=�d�^�3�vf�m\\u000f�\\\\�M�$�\\u0003X&�!�����;�{���|͟�\\u0000�d��B����Xf��k�7\\u0002Q=Z�\\u0006;�5���-��\\u000f�=2W\\u0000ð2h�w���;ZOJ�_¼\\u0004tX���Ӌ������s#\\t\\u0006��?Yk�Ak\\u0006\\u0004q�&�����\\u001e���\\u000f���k��d�d�\\u001b8�Xw\\u001b���8=\\u001a�����<�R\\n��\\n�\\u0005�*W��Urwdב\\ti\\u0014\\\"��G��L�\\b\\u001d4�<\\u001e���L��]hu��\\u0014�\\u0012��R�Z�\\r8�k�Oj�d7\\u0017#&�QK\\u0002�\\u0005ֆ�ٯ|�D\\u001c��H���)\\t�5�\\rC\\b[�~�Y�:���F]u��=_�\\\"$K��%��<��v�\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": [],\n    \"url_encoding_signals\": [\n      \"%2b\",\n      \"%2f->/\"\n    ]\n  },\n  {\n    \"segment_no\": 582,\n    \"stream_key\": \"192.168.106.131:1200-199.115.119.13:80-tcp\",\n    \"protocol\": \"TCP\",\n    \"position\": \"tcp_payload.text\",\n    \"source\": \"tcp_payload.text.kv_token.p\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"lk806QwfNfVdqAZnc%2BYIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy%2BvMTNIDs1NffyJaeL%2FppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q%2F0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i%2BQOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC%2BtTi5xliFOfbyHqJWbzO4FM%2F%2BVVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj%2BCpxUSb3uXCq47E%2FCefRYsWo9tSYr9ZX%2F9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG%2BqtjSuYzhFh86uy%2F%2BFzfPeLkN7fdkzinUhx1RvrO4bMKJsoc%2BaSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru%2BA9Fj0aPv9mTMR4S5%2Ffd8ixZ9crRbJ9IbN3GWCB1%2Bb%2F32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU%2B7MFqnYqe4QSL3QBb%2FpUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q%2FYk%2B7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa%2BvjdFAYCnesXV32nJYgpOk%2Fz0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj%2FvOsqaPnnvWq%2B%2FuFB9x9EtYvlbzFg79pwA%2FmCH%2Fdrtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte%2FKO1vJ8zZ%2FrAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt%2BLUP%2BT0yVwDDsDJoyXfv7dk7Wk9K41%2FCvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H%2B4HviSvg%2BF9vBrgr1k9mSwGzibWHcb5%2FrFOD0a86z2h%2F6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo%2FfR7%2BxTIEIHTSRPB6X1e6NTO%2FAXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck%2FNI94uPKQmyfzWSDU\",\n    \"decoded_preview\": \"�O4�\\f\\u001f5�]�\\u0006gs�\\bh\\u0012�U���0ѧ\\u001c3\\r��\\f�|PHU����L\\u0014b���\\u00134�����Ȗ�/�i�kf[/\\u0004��(mxtb%^.�*���>�\\u0015Q�H\\u0010�r�E�zE!���Z\\u000ejV΢iPA�g�\\u0004)���I7.V�\\u001a�k�\\u001cN\\u001eP�E�ƌǂ\\u0002�Y8\\u00030�Y�&n%�/�9\\u001c�4����tW�<6\\u001e��Ж&n%�/�9�&n%�/�9�.���'\\u001a�Q�y'\\u0012��}��A'��\\u0016(L\\u001c��HS�t\\u0014\\u0011e���ؑ \\n�)���w2�Ǡ���\\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\\u0012:�զ�|���\\u0001��e\\u0006?��\\u0015\\u0012o{�\\n�;\\u0013�}\\u0016,Z�mI��e���sJ\\u00168���*1i�At�a�\\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\\u001b0�l�ϚIBn�;�\\u0014�1Y�փ\\u0016�5*p��\\u0013�P�8��\\u000b\\u0003\\u0000j��\\u000fE�F��ٓ1\\u001e\\u0012����,Y���l�Hl��X u���٦\\u0019�5[�b%^.�*��kK��AxR�T��\\u0005�v*{�\\u0012/t\\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\\u001c�9�*\\u0012��I)V��{6dژf\\u0005���\\\\���Xf�z�bO��\\\"ȢQ�C�T��16� \\u001a�A���p+��,�-J�,�@\\u0005!\\u0005\\u000f�F,��ޘUoj��\\u0016T\\u0013-(�M�ꉡ.\\u001e��V����t�\\u0001�-B=\\u001b)V�æ�)5����@`)ޱuw�rX����=\\u0014!d�5�*��N\\u0017(Z\\u0018��f�v����AYv�\\u001a�\\f��\\u001ba������\\\"��דe\\u001d�\\t^�\\b˳#�󬩣������\\u0007�}\\u0012�/��Ń�i�\\u000f�\\bݮ��.\\u0018�;VW��\\u000b˟\\u001em�L=�d�^�3�vf�m\\u000f�\\\\�M�$�\\u0003X&�!�����;�{���|͟�\\u0000�d��B����Xf��k�7\\u0002Q=Z�\\u0006;�5���-��\\u000f�=2W\\u0000ð2h�w���;ZOJ�_¼\\u0004tX���Ӌ������s#\\t\\u0006��?Yk�Ak\\u0006\\u0004q�&�����\\u001e���\\u000f���k��d�d�\\u001b8�Xw\\u001b���8=\\u001a�����<�R\\n��\\n�\\u0005�*W��Urwdב\\ti\\u0014\\\"��G��L�\\b\\u001d4�<\\u001e���L��]hu��\\u0014�\\u0012��R�Z�\\r8�k�Oj�d7\\u0017#&�QK\\u0002�\\u0005ֆ�ٯ|�D\\u001c��H���)\\t�5�\\r\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": [],\n    \"url_encoding_signals\": [\n      \"%2b\",\n      \"%2f->/\"\n    ]\n  },\n  {\n    \"segment_no\": 583,\n    \"stream_key\": \"192.168.106.131:1200-199.115.119.13:80-tcp\",\n    \"protocol\": \"TCP\",\n    \"position\": \"http_request.uri\",\n    \"source\": \"http_request.uri.kv_token.p\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"lk806QwfNfVdqAZnc%2BYIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy%2BvMTNIDs1NffyJaeL%2FppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q%2F0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i%2BQOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC%2BtTi5xliFOfbyHqJWbzO4FM%2F%2BVVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj%2BCpxUSb3uXCq47E%2FCefRYsWo9tSYr9ZX%2F9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG%2BqtjSuYzhFh86uy%2F%2BFzfPeLkN7fdkzinUhx1RvrO4bMKJsoc%2BaSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru%2BA9Fj0aPv9mTMR4S5%2Ffd8ixZ9crRbJ9IbN3GWCB1%2Bb%2F32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU%2B7MFqnYqe4QSL3QBb%2FpUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q%2FYk%2B7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa%2BvjdFAYCnesXV32nJYgpOk%2Fz0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj%2FvOsqaPnnvWq%2B%2FuFB9x9EtYvlbzFg79pwA%2FmCH%2Fdrtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte%2FKO1vJ8zZ%2FrAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt%2BLUP%2BT0yVwDDsDJoyXfv7dk7Wk9K41%2FCvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H%2B4HviSvg%2BF9vBrgr1k9mSwGzibWHcb5%2FrFOD0a86z2h%2F6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo%2FfR7%2BxTIEIHTSRPB6X1e6NTO%2FAXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck%2FNI94uPKQmyfzWSDUMIW%2Fh%2BxFmZOoen3UZddZP%2BPV%2F%2FIiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct%2FIIwk\",\n    \"decoded_preview\": \"�O4�\\f\\u001f5�]�\\u0006gs�\\bh\\u0012�U���0ѧ\\u001c3\\r��\\f�|PHU����L\\u0014b���\\u00134�����Ȗ�/�i�kf[/\\u0004��(mxtb%^.�*���>�\\u0015Q�H\\u0010�r�E�zE!���Z\\u000ejV΢iPA�g�\\u0004)���I7.V�\\u001a�k�\\u001cN\\u001eP�E�ƌǂ\\u0002�Y8\\u00030�Y�&n%�/�9\\u001c�4����tW�<6\\u001e��Ж&n%�/�9�&n%�/�9�.���'\\u001a�Q�y'\\u0012��}��A'��\\u0016(L\\u001c��HS�t\\u0014\\u0011e���ؑ \\n�)���w2�Ǡ���\\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\\u0012:�զ�|���\\u0001��e\\u0006?��\\u0015\\u0012o{�\\n�;\\u0013�}\\u0016,Z�mI��e���sJ\\u00168���*1i�At�a�\\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\\u001b0�l�ϚIBn�;�\\u0014�1Y�փ\\u0016�5*p��\\u0013�P�8��\\u000b\\u0003\\u0000j��\\u000fE�F��ٓ1\\u001e\\u0012����,Y���l�Hl��X u���٦\\u0019�5[�b%^.�*��kK��AxR�T��\\u0005�v*{�\\u0012/t\\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\\u001c�9�*\\u0012��I)V��{6dژf\\u0005���\\\\���Xf�z�bO��\\\"ȢQ�C�T��16� \\u001a�A���p+��,�-J�,�@\\u0005!\\u0005\\u000f�F,��ޘUoj��\\u0016T\\u0013-(�M�ꉡ.\\u001e��V����t�\\u0001�-B=\\u001b)V�æ�)5����@`)ޱuw�rX����=\\u0014!d�5�*��N\\u0017(Z\\u0018��f�v����AYv�\\u001a�\\f��\\u001ba������\\\"��דe\\u001d�\\t^�\\b˳#�󬩣������\\u0007�}\\u0012�/��Ń�i�\\u000f�\\bݮ��.\\u0018�;VW��\\u000b˟\\u001em�L=�d�^�3�vf�m\\u000f�\\\\�M�$�\\u0003X&�!�����;�{���|͟�\\u0000�d��B����Xf��k�7\\u0002Q=Z�\\u0006;�5���-��\\u000f�=2W\\u0000ð2h�w���;ZOJ�_¼\\u0004tX���Ӌ������s#\\t\\u0006��?Yk�Ak\\u0006\\u0004q�&�����\\u001e���\\u000f���k��d�d�\\u001b8�Xw\\u001b���8=\\u001a�����<�R\\n��\\n�\\u0005�*W��Urwdב\\ti\\u0014\\\"��G��L�\\b\\u001d4�<\\u001e���L��]hu��\\u0014�\\u0012��R�Z�\\r8�k�Oj�d7\\u0017#&�QK\\u0002�\\u0005ֆ�ٯ|�D\\u001c��H���)\\t�5�\\rC\\b[�~�Y�:���F]u��=_�\\\"$K��%��<��v�\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": [],\n    \"url_encoding_signals\": [\n      \"%2b\",\n      \"%2f->/\"\n    ]\n  },\n  {\n    \"segment_no\": 600,\n    \"stream_key\": \"199.115.119.13:80-192.168.106.131:1200-tcp\",\n    \"protocol\": \"HTTP\",\n    \"position\": \"http_request.uri\",\n    \"source\": \"http_request.uri.kv_token.p\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_binary\",\n    \"raw\": \"lk806QwfNfVdqAZnc%2BYIaBKgVdzY3n8w0accMw2b5wy2fFBIVfXwjOFMFGLy%2BvMTNIDs1NffyJaeL%2FppsGtmWy8EgoAobXh0YiVeLtUqkrylPvkVUatIEOdy4kWRekUhlpnvWg5qVs6iaVBB4GffBCmdopZJNy5WsBqha4wcTh5Q%2F0W3xozHggKrWTgDMP5ZliZuJeovkDkc2jSw95qhdFf3PDYekLfQliZuJeovkDmWJm4l6i%2BQOY4urMbCJxrnUZ15JxKUzn3yhvJBJ5quFihMHIj4SFO9dBQRZaKB89iRIArnKdz3m3cy58egtpejC%2BtTi5xliFOfbyHqJWbzO4FM%2F%2BVVnXcr2Kb8jxI6u9WmwXze9PgBqN1lBj%2BCpxUSb3uXCq47E%2FCefRYsWo9tSYr9ZX%2F9motzShY42tXaKjFp9EF08WGwDMPyedqpkcJ5yG%2BqtjSuYzhFh86uy%2F%2BFzfPeLkN7fdkzinUhx1RvrO4bMKJsoc%2BaSUJuuTu4FOcxWenWgxa5NSpw9OOtE71QlzjdywsDAGru%2BA9Fj0aPv9mTMR4S5%2Ffd8ixZ9crRbJ9IbN3GWCB1%2Bb%2F32aYZgjVbvWIlXi7VKpK8a0vg6kF4UutU%2B7MFqnYqe4QSL3QBb%2FpUy7vF3VGDTjGHaZnN44A7oHfPgSM97Spjq9GqQRzBOeUqEsnRSSlWnsh7NmTamGYFgYqHXLj0oVhm03q%2FYk%2B7iyLIolGfQ6hUk4UxNtEgGv9B49vOcCu6ryzeLUrELNZABSEFD7lGLMHL3phVb2qTsBZUEy0ouE286omhLh6OmlbynOLh9It05acB75gtQj0bKVaRw6b2KcKcNa%2BvjdFAYCnesXV32nJYgpOk%2Fz0UIWTfNbEqmIhOFyhaGJj8Zr52pu7P20FZduYatgyD3BthvJ69pdXYIqDI15NlHcwJXqMIy7Mj%2FvOsqaPnnvWq%2B%2FuFB9x9EtYvlbzFg79pwA%2FmCH%2Fdrtr9LhifO1ZX7uELy58ebY1MPY5k6l62M5p2Zv5tD8ZcqU3dJOwDWCbohiH4zvic3zvte%2FKO1vJ8zZ%2FrAIBkxe1C2fSw1VhmuYBrsjcCUT1augY7mTWtuIUt%2BLUP%2BT0yVwDDsDJoyXfv7dk7Wk9K41%2FCvAR0WJ6yu9OLm5j4nOvWcyMJBsr5P1lr4kFrBgRx7KUmtZTt1H%2B4HviSvg%2BF9vBrgr1k9mSwGzibWHcb5%2FrFOD0a86z2h%2F6pPO2HUgrV5gqYBfcqV6S9VXJ3ZNeRCWkUIo%2FfR7%2BxTIEIHTSRPB6X1e6NTO%2FAXWh1q6cUvxL09VK0WvwNONVrwU9qn2Q3FyMmk1FLAq8F1oa32a9880Qck%2FNI94uPKQmyfzWSDUMIW%2Fh%2BxFmZOoen3UZddZP%2BPV%2F%2FIiRLhssl3PM8luJ2pKpOQl55djXvEw6TAx1Wi2zLlct%2FIIwk\",\n    \"decoded_preview\": \"�O4�\\f\\u001f5�]�\\u0006gs�\\bh\\u0012�U���0ѧ\\u001c3\\r��\\f�|PHU����L\\u0014b���\\u00134�����Ȗ�/�i�kf[/\\u0004��(mxtb%^.�*���>�\\u0015Q�H\\u0010�r�E�zE!���Z\\u000ejV΢iPA�g�\\u0004)���I7.V�\\u001a�k�\\u001cN\\u001eP�E�ƌǂ\\u0002�Y8\\u00030�Y�&n%�/�9\\u001c�4����tW�<6\\u001e��Ж&n%�/�9�&n%�/�9�.���'\\u001a�Q�y'\\u0012��}��A'��\\u0016(L\\u001c��HS�t\\u0014\\u0011e���ؑ \\n�)���w2�Ǡ���\\u000b�S��e�S�o!�%f�;�L��U�w+ئ��\\u0012:�զ�|���\\u0001��e\\u0006?��\\u0015\\u0012o{�\\n�;\\u0013�}\\u0016,Z�mI��e���sJ\\u00168���*1i�At�a�\\f��yک��y�o��4�c8E�ή������.C{}�3�u!�To��\\u001b0�l�ϚIBn�;�\\u0014�1Y�փ\\u0016�5*p��\\u0013�P�8��\\u000b\\u0003\\u0000j��\\u000fE�F��ٓ1\\u001e\\u0012����,Y���l�Hl��X u���٦\\u0019�5[�b%^.�*��kK��AxR�T��\\u0005�v*{�\\u0012/t\\u0001o�T˻��Q�N1�i���;�wρ#=�*c�ѪA\\u001c�9�*\\u0012��I)V��{6dژf\\u0005���\\\\���Xf�z�bO��\\\"ȢQ�C�T��16� \\u001a�A���p+��,�-J�,�@\\u0005!\\u0005\\u000f�F,��ޘUoj��\\u0016T\\u0013-(�M�ꉡ.\\u001e��V����t�\\u0001�-B=\\u001b)V�æ�)5����@`)ޱuw�rX����=\\u0014!d�5�*��N\\u0017(Z\\u0018��f�v����AYv�\\u001a�\\f��\\u001ba������\\\"��דe\\u001d�\\t^�\\b˳#�󬩣������\\u0007�}\\u0012�/��Ń�i�\\u000f�\\bݮ��.\\u0018�;VW��\\u000b˟\\u001em�L=�d�^�3�vf�m\\u000f�\\\\�M�$�\\u0003X&�!�����;�{���|͟�\\u0000�d��B����Xf��k�7\\u0002Q=Z�\\u0006;�5���-��\\u000f�=2W\\u0000ð2h�w���;ZOJ�_¼\\u0004tX���Ӌ������s#\\t\\u0006��?Yk�Ak\\u0006\\u0004q�&�����\\u001e���\\u000f���k��d�d�\\u001b8�Xw\\u001b���8=\\u001a�����<�R\\n��\\n�\\u0005�*W��Urwdב\\ti\\u0014\\\"��G��L�\\b\\u001d4�<\\u001e���L��]hu��\\u0014�\\u0012��R�Z�\\r8�k�Oj�d7\\u0017#&�QK\\u0002�\\u0005ֆ�ٯ|�D\\u001c��H���)\\t�5�\\rC\\b[�~�Y�:���F]u��=_�\\\"$K��%��<��v�\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [\n      \"decoded_binary_or_obfuscated_payload\"\n    ],\n    \"nested_candidates\": [],\n    \"url_encoding_signals\": [\n      \"%2b\",\n      \"%2f->/\"\n    ]\n  },\n  {\n    \"segment_no\": 1536,\n    \"stream_key\": \"199.115.115.136:1337-192.168.106.131:1222-tcp\",\n    \"protocol\": \"HTTP\",\n    \"position\": \"http_header.response_line\",\n    \"source\": \"http_header.response_line.embedded_url[0].query_param.s\",\n    \"candidate_type\": \"http_encoded_value\",\n    \"decode_status\": \"success_compressed\",\n    \"raw\": \"eAFdk0GPozgQhf_KXDa3TdsEuslKrZUdbAjp0LHBxnAjmEAaEphAJqSVH7_0jDS72lOp6lW9w1N91TB0fz09XQp9vBT5MM_0n4ei0P08b0_TtL82Q__0d5ddhnNxOepXCE3Tfp5lXTc1xrNtzvrr_ud8-bKYHbtXaNhz-GzOIXiZGwac5V97LxBa5qw4D5f7a6GveTYc2_MfBsjb83A8X4_ncmq6S3so-n5Ssmb2vX9dV7c1qmRClUwwkAHhfqJYRynY3pWUaCXzSFOLYnwrCEq0D0ROXZlJkkoGme2V6S6EicJl_-ZhkaRNl4R0YPgj39FRE0a7VMGbpCxfuBAj1gim4RhJ3K5C2WBVkYgYwQ6NPpfMgqrx3ahJlCv9whkJT2CjHUKlc-YHAXzfITJVAHHC6UfM6S8_aUVO3RScNgdVUU0UTJXwEyHHT1XDVSgwiXmgf_tR-EY8WUx-BzKCQDS3mGB8UqLPMSM6b1LFarqOiP2GxIhCBwrMWEKZNByQIg9K1xnLVJbL1fstWaFbnUefKMfjdE_bDUJbT1B5jalFpEykloPg0N4jyDQStsc-ykLQpEAkNUNMclJDGo29Fo1EAUJ-JC1GvDSXZHiX1XaLcId4XS4kXXoxnTIZe-7VLEEYHMLRR9glu5CsN6TJ7wqAKRt775atihoeBTe0xmTtRvfqTfDppkTIQT4RJa8cyGkotavJwKmzlW6Zx8zwI-a07yHZbghl7ZYj7aC1ckineYyvXtiCwAkEUTSLATux2ufxJ2EEV3VcV6u4wmLjkHc6TkExvlFClvsKfA8c7ssxubmlObiVnXmsRZKxMLhPfqRR9ANlzhEElCUkbOD0b8E5om24O-ITcm7nXcTGXag3sRCEGCJ3OfjENWm9cr33KovHZf9jf1oeV0eYP76QeUA4wfL4HymPa5_pYj8cLkXxRd8DzAGA5gt4_Cbm27-8fPsvLQ8DmIZl2oupGPYDLszlwgLWi_Ul_AMeZj_v\",\n    \"decoded_preview\": \"http://redirect.ad-feeds.com/results/?partnerid=114486&appid=2684&subid=11973&ip=128.164.107.221&cid=271154&entry=education%20continuing%20professional&qs=IhwIAhVYFXVYB0VNERJYXQpFF0MyXVVACVcTdF5FBBweEAYdJ0UcFGVaVEZVQ1Q8HgZPS1YXBgsLHBUYZlpYSFtQBjcPFxdEQFpZX1wVFQc3G1BAQlUQd1xTVBoCSVlBXhETE2NPAxJRVQ51XlJGTlYXGVJeDxERY1ldDEFVDnRfU0JJDEVZX0ARERFjWRFAQlUQdV5TDkleRFlfXhFdEX1ZXUJYUVxzXk1CSUBEWRNdDxERY1ldDF1LEHVeU0JfEx0NUlwWEBBmXUscBQEdclZXQkFITE8LAUxASD1UBQQYFQV2D0ZAH1VGDxgZVg9COwYCAwkcTzAcBxscBFoKAAMHUFVuWF5EVVYVdVtUR18bA1QdAU8HQjgeUFYeAEZ4SBEcEk1FTxsdUlVANAAJTV5QEHZcVEtOVhMMABpARkg3VF9HWFERYxsRHkQYAB0fSxJABGEPSEIKElcyX00RER8bGgoXTlRTNwAIBEIGTyhLURQYAgAADAJEUgRhD1RFSVdGdEtRFDMVGgcWQ2JTQDoOSEMKEFQoMRAdDAIXDEpdRWBuHSo0NDNUEXFaW0QmQkJRWzEQEBhkWkhCWhBUKDEOFx0ZAQRKXUVgbh0qNDRJVxYwGg4tGh8aHQoAVQQSNyo0NElXFjAaDi0NFQYESl1FBBNnTFoSPiBmADwnPTQxPSdKWUUEE2UcGR0zBkEoHgIbHh5RWgsvbm9iCi1c|2684|11973|128.164.107.221|usadebtfree.com|0.001470|education continuing professional|2042548304228|1349350575|204\",\n    \"normalized_payload\": null,\n    \"residue_signals\": [],\n    \"nested_candidates\": [],\n    \"url_encoding_signals\": [\n      \"%20\"\n    ]\n  }\n]\n\nURL-encoded routing guidance:\n- If URL-encoded candidates preview is not empty, prefer decision = call_other_tool.\n- In that case, set recommended_tool = url_decode_tool.\n- Use recommended_options such as recursive=true, max_depth=2, plus_as_space=true, deduplicate=true.\n- Do not use noise_cleanup_tool for percent-encoded URI/query/header values unless the issue is actually base64 suffix noise.\n\nExcluded streams:\n[\n  {\n    \"stream_key\": \"192.168.106.131:1215-74.125.228.101:443-tcp\",\n    \"protocol\": \"TLS\",\n    \"reason\": \"encrypted_stream_excluded\",\n    \"segment_count\": 3\n  },\n  {\n    \"stream_key\": \"74.125.228.101:443-192.168.106.131:1215-tcp\",\n    \"protocol\": \"TLS\",\n    \"reason\": \"encrypted_stream_excluded\",\n    \"segment_count\": 28\n  }\n]\n\nReturn JSON only with fields:\n{decision, completion_status, requires_additional_verification, reason, recommended_tool, recommended_options}\n",
+  "error": null
+}

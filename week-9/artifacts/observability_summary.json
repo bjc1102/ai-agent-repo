@@ -1,0 +1,130 @@
+{
+  "baseline_normal": {
+    "run_id": "20260527_141502",
+    "model": "gemini-3.1-flash-lite",
+    "llm_calls": 3,
+    "tool_calls": 3,
+    "processed_files": 3,
+    "route_counts": {
+      "llm_review": 3
+    },
+    "total_latency_ms": 16128,
+    "llm_latency_ms_sum": 15951,
+    "action_latency_ms_sum": 101,
+    "cases": [
+      {
+        "input": "data\\strategy\\01_sample_packet_ldap-basic-auth-ev1_strategy.pending.json",
+        "route": "llm_review",
+        "decision": "retry_same_tool",
+        "recommended_tool": "noise_cleanup_tool",
+        "completion_status": "decoded_with_failed_artifacts",
+        "file_status": "pending",
+        "llm_duration_ms": 2537,
+        "action_duration_ms": 101,
+        "duration_ms": 2649,
+        "action_executed": true
+      },
+      {
+        "input": "data\\strategy\\04_sample_log4shell-ldaps-port-1399-dsb_strategy.pending.json",
+        "route": "llm_review",
+        "decision": "stop_with_exclusion",
+        "recommended_tool": null,
+        "completion_status": "partial_excluded",
+        "file_status": "done",
+        "llm_duration_ms": 1710,
+        "action_duration_ms": 0,
+        "duration_ms": 1719,
+        "action_executed": null
+      },
+      {
+        "input": "data\\strategy\\05_sample_log4shell-ldaps-port-443-dsb_strategy.pending.json",
+        "route": "llm_review",
+        "decision": "stop_with_exclusion",
+        "recommended_tool": null,
+        "completion_status": "partial_excluded",
+        "file_status": "done",
+        "llm_duration_ms": 11704,
+        "action_duration_ms": 0,
+        "duration_ms": 11714,
+        "action_executed": null
+      }
+    ]
+  },
+  "baseline_exception": {
+    "run_id": "20260527_141308",
+    "model": "gemini-3.1-flash-lite-preview",
+    "processed_files": 3,
+    "route_counts": {
+      "llm_review": 3
+    },
+    "total_latency_ms": 16716,
+    "llm_calls_attempted": 3,
+    "errors": [
+      {
+        "strategy_path": "data\\strategy\\01_sample_packet_ldap-basic-auth-ev1_strategy.pending.json",
+        "error": "LLM request failed after retries: 404 Client Error: Not Found for url: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions; response_body=[{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-3.1-fla..."
+      },
+      {
+        "strategy_path": "data\\strategy\\04_sample_log4shell-ldaps-port-1399-dsb_strategy.pending.json",
+        "error": "LLM request failed after retries: 404 Client Error: Not Found for url: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions; response_body=[{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-3.1-fla..."
+      },
+      {
+        "strategy_path": "data\\strategy\\05_sample_log4shell-ldaps-port-443-dsb_strategy.pending.json",
+        "error": "LLM request failed after retries: 404 Client Error: Not Found for url: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions; response_body=[{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-3.1-fla..."
+      }
+    ]
+  },
+  "optimization_before": {
+    "completion_status": "url_encoded_candidate_detected",
+    "decoded_status": "decode_success_with_residue",
+    "decision": "ai_review_required",
+    "needs_llm_review": true,
+    "counts": {
+      "decoded_candidates": 161,
+      "failed_candidates": 0,
+      "residue_candidates": 157,
+      "url_encoded_candidates": 11,
+      "excluded_streams": 2,
+      "tls_streams": 2,
+      "tls_segments": 31,
+      "non_tls_streams": 98,
+      "non_tls_segments": 3798,
+      "checked_streams": 100,
+      "checked_segments": 3829
+    },
+    "prompt_chars": 35634,
+    "approx_input_tokens_chars_div4": 8908,
+    "recommended_tool_hint": "url_decode_tool",
+    "first_decoded_preview_status": "success_binary",
+    "first_decoded_preview_source": "http_request.uri.path_segment",
+    "first_decoded_preview_is_redacted": false
+  },
+  "optimization_after": {
+    "completion_status": "url_encoded_candidate_detected",
+    "decoded_status": "decode_success_with_residue",
+    "decision": "ai_review_required",
+    "needs_llm_review": true,
+    "counts": {
+      "decoded_candidates": 161,
+      "failed_candidates": 0,
+      "residue_candidates": 157,
+      "url_encoded_candidates": 3,
+      "excluded_streams": 2,
+      "tls_streams": 2,
+      "tls_segments": 31,
+      "non_tls_streams": 98,
+      "non_tls_segments": 3798,
+      "checked_streams": 100,
+      "checked_segments": 3829
+    },
+    "prompt_chars": 12641,
+    "approx_input_tokens_chars_div4": 3160,
+    "recommended_tool_hint": "url_decode_tool",
+    "first_decoded_preview_status": "success_compressed",
+    "first_decoded_preview_source": "http_header.response_line.embedded_url[0].query_param.s",
+    "first_decoded_preview_is_redacted": false
+  },
+  "notes": {
+    "token_usage": "Provider usage fields were not persisted in baseline logs. prompt_chars and chars/4 approximate tokens are used as proxy metrics."
+  }
+}
