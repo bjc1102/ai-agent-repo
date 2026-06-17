@@ -1,10 +1,4 @@
 # Personal Agent Repository - 9주차 LLM Cost Optimization Update
-
-## 프로젝트 링크
-
-- Repository: `<개인 Agent Repository URL로 교체>`
-- 8주차 제출 README: `<8주차 README URL로 교체>`
-
 ## Baseline Trace
 
 분석 대상으로 삼은 정상 케이스:
