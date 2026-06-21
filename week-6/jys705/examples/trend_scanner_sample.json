@@ -1,0 +1,132 @@
+{
+    "_description": "trend_scanner Tool 실제 API 응답 샘플",
+    "_sources": {
+      "meme": ["Reddit API (r/memes/hot)", "YouTube Data API v3 (mostPopular)"],
+      "it":   ["HackerNews API (topstories)", "GitHub REST API (search/repositories)"]
+    },
+  
+    "meme_trends": [
+      {
+        "keyword": "카피바라 밈",
+        "source": "reddit",
+        "raw_response": {
+          "title": "capybara doesn't care about anything",
+          "subreddit": "memes",
+          "score": 94200,
+          "upvote_ratio": 0.97,
+          "url": "https://reddit.com/r/memes/comments/example1",
+          "created_utc": 1746100000,
+          "num_comments": 1823
+        }
+      },
+      {
+        "keyword": "게 사이드워크 밈",
+        "source": "reddit",
+        "raw_response": {
+          "title": "me walking sideways into the weekend",
+          "subreddit": "dankmemes",
+          "score": 67400,
+          "upvote_ratio": 0.95,
+          "url": "https://reddit.com/r/dankmemes/comments/example2",
+          "created_utc": 1746090000,
+          "num_comments": 934
+        }
+      },
+      {
+        "keyword": "고양이 찰떡 밈",
+        "source": "youtube",
+        "raw_response": {
+          "id": "dQw4w9WgXYZ",
+          "snippet": {
+            "title": "카피바라가 모든 걸 이겨내는 법 🦫",
+            "description": "nothing bothers him. nothing.",
+            "tags": ["capybara", "meme", "viral", "shorts", "funny"],
+            "channelTitle": "MemeCentral",
+            "publishedAt": "2026-05-06T14:23:00Z"
+          },
+          "statistics": {
+            "viewCount": "4200000",
+            "likeCount": "380000",
+            "commentCount": "12400"
+          }
+        }
+      }
+    ],
+  
+    "it_trends": [
+      {
+        "keyword": "MCP 핫함",
+        "source": "hackernews",
+        "raw_response": {
+          "id": 43821045,
+          "title": "MCP is the new LSP",
+          "url": "https://blog.sbensu.com/posts/mcp/",
+          "score": 847,
+          "by": "sbensu",
+          "time": 1746123456,
+          "descendants": 312,
+          "type": "story"
+        }
+      },
+      {
+        "keyword": "Rust 급부상",
+        "source": "github",
+        "raw_response": {
+          "name": "rustls",
+          "full_name": "rustls/rustls",
+          "description": "A modern TLS library in Rust",
+          "stargazers_count": 6821,
+          "forks_count": 490,
+          "language": "Rust",
+          "topics": ["rust", "tls", "security", "networking"],
+          "html_url": "https://github.com/rustls/rustls",
+          "updated_at": "2026-05-07T08:12:00Z"
+        }
+      },
+      {
+        "keyword": "vibe coding 유행",
+        "source": "hackernews",
+        "raw_response": {
+          "id": 43819988,
+          "title": "Vibe coding: the good, the bad, and the unreviewed",
+          "url": "https://newsletter.pragmaticengineer.com/p/vibe-coding",
+          "score": 634,
+          "by": "gergely",
+          "time": 1746110000,
+          "descendants": 278,
+          "type": "story"
+        }
+      }
+    ],
+  
+    "edge_cases": [
+      {
+        "_case": "Failure — YouTube API timeout",
+        "error": "trend_fetch_failed",
+        "detail": "youtube API timeout after 5000ms",
+        "partial_result": {
+          "meme_trends": [
+            {
+              "keyword": "카피바라 밈",
+              "source": "reddit",
+              "raw_response": {
+                "title": "capybara doesn't care about anything",
+                "subreddit": "memes",
+                "score": 94200
+              }
+            }
+          ],
+          "it_trends": []
+        }
+      },
+      {
+        "_case": "Missing Info — 입력이 너무 짧음",
+        "user_query": "뭔가 만들어줘",
+        "applied_default": {
+          "trend_focus": "both",
+          "difficulty_limit": null,
+          "exclude_existing": false
+        }
+      }
+    ]
+  }
